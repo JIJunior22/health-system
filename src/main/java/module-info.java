@@ -7,6 +7,7 @@ module group.nine.healthsystem {
     requires net.synedra.validatorfx;
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
+    requires jakarta.persistence;
 
     opens group.nine.healthsystem to javafx.fxml;
     exports group.nine.healthsystem;
