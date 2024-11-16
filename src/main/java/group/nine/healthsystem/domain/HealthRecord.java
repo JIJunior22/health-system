@@ -6,5 +6,6 @@ public class HealthRecord {
     double systolicPressure;
     double diastolicPressure;
     double dateAndHour;
+    int bloodOxigenSaturation;
 
 }
