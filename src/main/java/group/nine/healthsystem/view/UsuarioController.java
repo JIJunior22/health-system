@@ -1,4 +1,4 @@
 package group.nine.healthsystem.view;
 
-public class HealthReportController {
+public class UsuarioController {
 }
