@@ -6,7 +6,7 @@ import jakarta.persistence.Persistence;
 
 import java.util.Objects;
 
-public class EntityManagerFactoryConfig {
+public class EntityManagerFactoryConnection {
     private EntityManagerFactory em = Persistence.createEntityManagerFactory("healthSystem");
 
     // Declara o EntityManager, que será inicializado quando necessário.

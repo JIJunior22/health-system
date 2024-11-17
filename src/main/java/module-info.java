@@ -8,6 +8,7 @@ module group.nine.healthsystem {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires jakarta.persistence;
+    requires static lombok;
 
     opens group.nine.healthsystem to javafx.fxml;
     exports group.nine.healthsystem;
