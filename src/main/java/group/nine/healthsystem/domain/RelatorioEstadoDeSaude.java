@@ -10,8 +10,8 @@ import java.time.LocalDate;
 public class RelatorioEstadoDeSaude {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    LocalDate dataHora;
+    private Long id;
+    private LocalDate dataHora;
     @OneToOne
     private Usuario usuarioID;
     private LocalDate periodoInicio;

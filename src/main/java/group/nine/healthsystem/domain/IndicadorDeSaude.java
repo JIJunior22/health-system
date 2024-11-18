@@ -11,11 +11,11 @@ import lombok.Data;
 public class IndicadorDeSaude {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    double frequenciaCardiaca;
-    double pressaoSistolica;
-    double pressaoDiastolica;
-    double dataHora;
-    int saturacaoOxigenioNosangue;
+    private Long id;
+    private double frequenciaCardiaca;
+    private double pressaoSistolica;
+    private double pressaoDiastolica;
+    private double dataHora;
+    private int saturacaoOxigenioNosangue;
 
 }

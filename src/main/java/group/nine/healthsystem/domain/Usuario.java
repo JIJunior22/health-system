@@ -7,16 +7,17 @@ import java.time.LocalDate;
 
 @Entity
 @Data
+@NamedQueries({@NamedQuery(name = "usuarios.getByName", query = "select  n from Usuario n where n.nome = :nome")})
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    String nome;
+    private Long id;
+    private String nome;
     @Column(unique = true)
-    String email;
-    String senha;
-    LocalDate dataNascimento;
-    String sexo;
-    double peso;
-    double altura;
+    private String email;
+    private String senha;
+    private LocalDate dataNascimento;
+    private String sexo;
+    private double peso;
+    private double altura;
 }
