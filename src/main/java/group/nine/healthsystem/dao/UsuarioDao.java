@@ -14,7 +14,7 @@ public class UsuarioDao {
         try {
             // Inicia a transação com o BD
             getEmc().getEntityManager().getTransaction().begin();
-            // Realiza a percistencia na tabela
+            // Realiza a persistencia na tabela
             getEmc().getEntityManager().persist(usuario);
             // Confirmação da transação
             getEmc().getEntityManager().getTransaction().commit();
@@ -30,5 +30,27 @@ public class UsuarioDao {
         return (Usuario) query.getSingleResult();
 
     }
+
+    public Usuario findById(Long id) {
+        getEmc().getEntityManager().getTransaction().begin();
+        return getEmc().getEntityManager().find(Usuario.class, id);
+
+    }
+
+    public void deleteById(Long id) {
+        var usuario = findById(id);
+        getEmc().getEntityManager().getTransaction().begin();
+        getEmc().getEntityManager().remove(usuario);
+        getEmc().getEntityManager().getTransaction().commit();
+        getEmc().getEntityManager().close();
+    }
+
+    public void atualizarUsuario(Usuario usuario) {
+        getEmc().getEntityManager().getTransaction().begin();
+        getEmc().getEntityManager().merge(usuario);
+        getEmc().getEntityManager().getTransaction().commit();
+        getEmc().getEntityManager().close();
+    }
+
 
 }
