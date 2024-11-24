@@ -5,13 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c5802069-2f27-4778-bbb6-f40a6a85d0ca" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/dao/UsuarioDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/dao/UsuarioDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/IndicadorDeSaude.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Notificacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Notificacao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/RelatorioEstadoDeSaude.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Usuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/view/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/view/UsuarioController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +99,7 @@
       <workItem from="1732214906307" duration="3813000" />
       <workItem from="1732310464148" duration="28000" />
       <workItem from="1732372573658" duration="7889000" />
-      <workItem from="1732466412363" duration="2177000" />
+      <workItem from="1732466412363" duration="2536000" />
     </task>
     <servers />
   </component>
