@@ -7,6 +7,7 @@
     <list default="true" id="c5802069-2f27-4778-bbb6-f40a6a85d0ca" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/group/nine/healthsystem/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/group/nine/healthsystem/login.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Login.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,6 +17,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="HTML File" />
+        <option value="Interface" />
         <option value="Class" />
         <option value="FxmlFile" />
         <option value="CSS File" />
@@ -41,12 +44,6 @@
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "Application.HelloApplication.executor": "Run",
     "Application.MainApplication.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "lucas",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Junior/Desktop/WorkSpace/health-system",
-    "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -78,6 +75,17 @@
       <workItem from="1731768966958" duration="3770000" />
       <workItem from="1731799646816" duration="2319000" />
       <workItem from="1731872924696" duration="6362000" />
+      <workItem from="1731889301400" duration="601000" />
+      <workItem from="1731970951693" duration="2183000" />
+      <workItem from="1732055623189" duration="2813000" />
+      <workItem from="1732064314256" duration="353000" />
+      <workItem from="1732122047971" duration="7210000" />
+      <workItem from="1732139613872" duration="12000000" />
+      <workItem from="1732214408363" duration="486000" />
+      <workItem from="1732214906307" duration="3813000" />
+      <workItem from="1732310464148" duration="28000" />
+      <workItem from="1732372573658" duration="7889000" />
+      <workItem from="1732466412363" duration="2177000" />
       <workItem from="1732386323225" duration="3523000" />
       <workItem from="1732460563214" duration="8489000" />
     </task>
