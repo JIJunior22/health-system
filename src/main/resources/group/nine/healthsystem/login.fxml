@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox alignment="CENTER" maxHeight="600.0" maxWidth="800.0" prefHeight="600.0" prefWidth="800.0">
+         <StackPane.margin>
+            <Insets />
+         </StackPane.margin>
+         <children>
+            <VBox alignment="CENTER" prefHeight="600.0" prefWidth="376.0" spacing="133.0">
+               <children>
+                  <ImageView fitHeight="54.0" fitWidth="396.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../img/Frame.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="294.0" fitWidth="237.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../img/Logo.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="55.0" fitWidth="395.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+                     <image>
+                        <Image url="@../../../img/Frame.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="600.0" prefWidth="427.0" spacing="30.0" style="-fx-background-color: #46BFB5;">
+               <children>
+                  <Label alignment="TOP_LEFT" text="Bem-vindo(a)!" textFill="WHITE">
+                     <font>
+                        <Font name="BebasNeueBold" size="46.0" />
+                     </font>
+                  </Label>
+                  <TextField prefHeight="45.0" prefWidth="320.0" promptText="E-mail">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </TextField>
+                  <PasswordField nodeOrientation="LEFT_TO_RIGHT" prefHeight="45.0" promptText="Senha">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </PasswordField>
+                  <Label alignment="CENTER" text="Cadastre-se" textFill="WHITE" underline="true">
+                     <font>
+                        <Font name="System Bold" size="21.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets left="40.0" right="40.0" />
+               </padding>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</StackPane>

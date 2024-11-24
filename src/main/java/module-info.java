@@ -10,6 +10,9 @@ module group.nine.healthsystem {
     requires jakarta.persistence;
     requires static lombok;
 
-    opens group.nine.healthsystem to javafx.fxml;
-    exports group.nine.healthsystem;
+    opens group.nine.healthsystem.view to javafx.fxml;
+    exports group.nine.healthsystem.view;
+
+    exports group.nine.healthsystem;  // Exporte o pacote contendo a classe MainApplication
+    opens group.nine.healthsystem to javafx.fxml;  // Permita o acesso reflexivo do FXMLLoader
 }
