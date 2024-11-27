@@ -24,6 +24,7 @@ public class UsuarioDao {
             getEmc().getEntityManager().persist(usuario);
             // Confirmação da transação
             getEmc().getEntityManager().getTransaction().commit();
+
             System.out.println(String.format("""
                             ╔══════════════════════════════════════╗
                             ║         Usuário Cadastrado           ║
@@ -46,6 +47,7 @@ public class UsuarioDao {
                     usuario.getSexo(),
                     usuario.getPeso(),
                     usuario.getAltura()));
+
         } finally {
             getEmc().getEntityManager().close();
         }
@@ -58,6 +60,7 @@ public class UsuarioDao {
         return (Usuario) query.getSingleResult();
 
     }
+
 
     public List<Usuario> findAll() {
       //  getEmc().getEntityManager().getTransaction().begin();
@@ -171,6 +174,27 @@ public class UsuarioDao {
             em.close();
             emf.close();
         }
+
+    public Usuario findById(Long id) {
+        getEmc().getEntityManager().getTransaction().begin();
+        return getEmc().getEntityManager().find(Usuario.class, id);
+
+    }
+
+    public void deleteById(Long id) {
+        var usuario = findById(id);
+        getEmc().getEntityManager().getTransaction().begin();
+        getEmc().getEntityManager().remove(usuario);
+        getEmc().getEntityManager().getTransaction().commit();
+        getEmc().getEntityManager().close();
+    }
+
+    public void atualizarUsuario(Usuario usuario) {
+        getEmc().getEntityManager().getTransaction().begin();
+        getEmc().getEntityManager().merge(usuario);
+        getEmc().getEntityManager().getTransaction().commit();
+        getEmc().getEntityManager().close();
+
     }
 
 

@@ -5,6 +5,8 @@
              version="2.1">
     <persistence-unit name="healthsystem" transaction-type="RESOURCE_LOCAL">
 
+    <persistence-unit name="meuPU" transaction-type="RESOURCE_LOCAL">
+
         <properties>
             <!-- Configurações do banco de dados PostgreSQL -->
             <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/healthsystem"/>
