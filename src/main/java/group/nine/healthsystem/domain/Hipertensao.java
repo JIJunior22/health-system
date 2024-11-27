@@ -1,14 +1,14 @@
 package group.nine.healthsystem.domain;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
 @Data
+@NamedQueries({@NamedQuery(name = "hipertencoes.getByName", query = "select  h from Hipertensao h where h.pressaoSistolica = :pressaoSistolica"),
+        @NamedQuery(name="hipertencoes.listarTodos",query="SELECT ps FROM Hipertensao ps")
+})
 public class Hipertensao {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
