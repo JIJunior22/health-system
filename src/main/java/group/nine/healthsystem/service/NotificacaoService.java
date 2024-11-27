@@ -1,5 +1,10 @@
 package group.nine.healthsystem.service;
 
+
+
+public class NotificacaoService {
+
+
 import group.nine.healthsystem.domain.IndicadorDeSaude;
 import group.nine.healthsystem.domain.Notificacao;
 import group.nine.healthsystem.domain.Usuario;

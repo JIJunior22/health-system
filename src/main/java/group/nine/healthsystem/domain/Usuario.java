@@ -7,6 +7,15 @@ import java.time.LocalDate;
 
 @Entity
 @Data
+
+@NamedQueries({@NamedQuery(name = "usuarios.getByName", query = "select  n from Usuario n where n.nome = :nome"),
+        @NamedQuery(name="usuarios.listarTodos",query="SELECT u FROM Usuario u")
+        })
+public class Usuario {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int cod;
+
 @NamedQueries({@NamedQuery(name = "usuarios.getByName", query = "select  n from Usuario n where n.nome = :nome")})
 public class Usuario {
     @Id
@@ -35,6 +44,26 @@ public class Usuario {
     public String gerarRelatorioIMC() {
         double imc = calcularIMC();
         String classificacao = classificarIMC(imc);
+
+
+        return String.format("""
+                ╔══════════════════════════════════════╗
+                ║          Relatório de IMC            ║
+                ╚══════════════════════════════════════╝
+                Nome           : %s
+                Peso           : %.2f kg
+                Altura         : %.2f m
+                IMC            : %.2f
+                Classificação  : %s
+                ═══════════════════════════════════════
+                """, nome, peso, altura, imc, classificacao);
+
+
+    }
+
+    public void exibirUserInfo() {
+        String resultadoImc = gerarRelatorioIMC();
+        System.out.println(resultadoImc);
 
         return String.format("""
                 Relatório IMC:
