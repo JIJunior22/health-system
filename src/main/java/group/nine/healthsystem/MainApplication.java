@@ -13,7 +13,7 @@ public class MainApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 600);
-        stage.setTitle("Login");
+        stage.setTitle("HealthSync");
         Image icon = new Image("file:src/main/resources/img/icon.png"); // Caminho para o ícone
         stage.getIcons().add(icon);
         stage.setScene(scene);
