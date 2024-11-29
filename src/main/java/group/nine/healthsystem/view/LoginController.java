@@ -23,6 +23,8 @@ public class LoginController {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/group/nine/healthsystem/cadastro.fxml"));
             Parent root = fxmlLoader.load();
 
+            root.requestFocus();
+
             Stage stage = (Stage) labelCadastro.getScene().getWindow();
             Pane mainPane = (Pane) stage.getScene().getRoot();
 

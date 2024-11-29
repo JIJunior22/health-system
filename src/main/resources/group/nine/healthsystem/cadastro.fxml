@@ -8,6 +8,7 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
@@ -37,8 +38,8 @@
                   </Text>
                   <HBox prefWidth="349.0" spacing="25.0">
                      <children>
-                        <TextField prefWidth="227.0" promptText="Nome" HBox.hgrow="ALWAYS" />
-                        <TextField promptText="Email" HBox.hgrow="ALWAYS">
+                        <TextField fx:id="nomeField" prefWidth="227.0" promptText="Nome" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="emailField" promptText="Email" HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -47,8 +48,8 @@
                   </HBox>
                   <HBox spacing="25.0">
                      <children>
-                        <PasswordField promptText="Senha" HBox.hgrow="ALWAYS" />
-                        <DatePicker promptText="Data de Nascimento" />
+                        <PasswordField fx:id="senhaField" promptText="Senha" HBox.hgrow="ALWAYS" />
+                        <DatePicker fx:id="dataDeNascimentoField" promptText="Data de Nascimento" />
                      </children>
                   </HBox>
                   <HBox spacing="25.0" VBox.vgrow="ALWAYS">
@@ -62,8 +63,11 @@
                               </Label>
                               <HBox spacing="25.0">
                                  <children>
-                                    <RadioButton mnemonicParsing="false" text="Masculino" />
-                                    <RadioButton mnemonicParsing="false" text="Feminino" />
+                                    <RadioButton fx:id="masculinoButton" mnemonicParsing="false" text="Masculino">
+                                       <toggleGroup>
+                                          <ToggleGroup  fx:id="sexoField" />
+                                       </toggleGroup></RadioButton>
+                                    <RadioButton fx:id="femininoButton" mnemonicParsing="false" text="Feminino" toggleGroup="$sexoField" />
                                  </children>
                               </HBox>
                            </children>
@@ -75,7 +79,7 @@
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Label>
-                              <TextField alignment="CENTER" promptText="Ex: 76,5" VBox.vgrow="ALWAYS" />
+                              <TextField alignment="CENTER" promptText="Ex: 76,5" VBox.vgrow="ALWAYS" fx:id="pesoField" />
                            </children>
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="123.0" prefWidth="149.0" spacing="5.0">
@@ -85,7 +89,7 @@
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Label>
-                              <TextField alignment="CENTER" promptText="Ex: 1,75" VBox.vgrow="ALWAYS" />
+                              <TextField alignment="CENTER" promptText="Ex: 1,75" VBox.vgrow="ALWAYS" fx:id="alturaField" />
                            </children>
                         </VBox>
                      </children>
@@ -93,7 +97,7 @@
                         <Insets />
                      </VBox.margin>
                   </HBox>
-                  <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="219.0" styleClass="button-entrar" stylesheets="@../../../style.css" text="Cadastre-Se">
+                  <Button mnemonicParsing="false" onAction="#handleFinalizarCadastro" prefHeight="44.0" prefWidth="219.0" styleClass="button-entrar" stylesheets="@../../../style.css" text="Cadastre-se" fx:id="cadastrarButton">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
@@ -104,7 +108,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Label fx:id="voltar" onMouseClicked="#handleVoltar" text="Já tem uma conta?" textFill="#1257e1" underline="true">
+                  <Label fx:id="voltar" onMouseClicked="#handleVoltar" text="Já tem uma conta?" textFill="#1257e1" underline="true" >
                      <font>
                         <Font name="System Bold" size="17.0" />
                      </font>

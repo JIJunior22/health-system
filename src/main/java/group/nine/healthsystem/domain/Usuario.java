@@ -2,11 +2,15 @@ package group.nine.healthsystem.domain;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
 @Entity
 @Data
+@NoArgsConstructor
 @NamedQueries({@NamedQuery(name = "usuarios.getByName", query = "select  n from Usuario n where n.nome = :nome")})
 public class Usuario {
     @Id

@@ -18,6 +18,7 @@ public class MainApplication extends Application {
         stage.getIcons().add(icon);
         stage.setScene(scene);
         stage.show();
+        scene.getRoot().requestFocus();
     }
 
     public static void main(String[] args) {
