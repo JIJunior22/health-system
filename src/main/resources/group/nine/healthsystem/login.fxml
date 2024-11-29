@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="stack-background" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="stack-background" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="group.nine.healthsystem.view.LoginController">
    <children>
-      <HBox alignment="CENTER" maxHeight="600.0" maxWidth="800.0" prefHeight="600.0" prefWidth="800.0">
+      <HBox alignment="CENTER" maxHeight="600.0" maxWidth="800.0" prefHeight="600.0" prefWidth="800.0" style="-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0.5, 5, 5);">
          <StackPane.margin>
             <Insets />
          </StackPane.margin>
@@ -46,17 +46,23 @@
                         <Font name="BebasNeueBold" size="46.0" />
                      </font>
                   </Label>
-                  <TextField prefHeight="45.0" prefWidth="320.0" promptText="E-mail">
+                  <TextField prefHeight="45.0" promptText="E-mail" styleClass="textfield-icon">
                      <font>
                         <Font size="16.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
                   </TextField>
-                  <PasswordField nodeOrientation="LEFT_TO_RIGHT" prefHeight="45.0" promptText="Senha">
+                  <PasswordField nodeOrientation="LEFT_TO_RIGHT" prefHeight="45.0" promptText="Senha" styleClass="senha-icon">
                      <font>
                         <Font size="16.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
                   </PasswordField>
-                  <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="179.0" stylesheets="@../../../style.css" text="Entrar">
+                  <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="179.0" styleClass="button-entrar" stylesheets="@../../../style.css" text="Entrar">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -64,7 +70,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Label alignment="CENTER" text="Cadastre-se" textFill="WHITE" underline="true">
+                  <Label fx:id="labelCadastro" alignment="CENTER" onMouseClicked="#handleCadastro" text="Cadastre-se" textFill="WHITE" underline="true">
                      <font>
                         <Font name="System Bold" size="21.0" />
                      </font>
