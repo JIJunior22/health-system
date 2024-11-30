@@ -19,7 +19,7 @@
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="stack-background" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="group.nine.healthsystem.view.UsuarioController">
    <children>
-      <HBox alignment="CENTER" maxHeight="600.0" maxWidth="800.0" prefHeight="600.0" prefWidth="800.0" style="-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0.5, 5, 5);" StackPane.alignment="CENTER">
+      <HBox alignment="CENTER" style="-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0.5, 5, 5);" StackPane.alignment="CENTER">
          <children>
             <VBox alignment="CENTER" prefHeight="600.0" prefWidth="802.0" spacing="20.0" style="-fx-background-color: White;">
                <children>
@@ -65,7 +65,7 @@
                                  <children>
                                     <RadioButton fx:id="masculinoButton" mnemonicParsing="false" text="Masculino">
                                        <toggleGroup>
-                                          <ToggleGroup  fx:id="sexoField" />
+                                          <ToggleGroup fx:id="sexoField" />
                                        </toggleGroup></RadioButton>
                                     <RadioButton fx:id="femininoButton" mnemonicParsing="false" text="Feminino" toggleGroup="$sexoField" />
                                  </children>
@@ -79,7 +79,7 @@
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Label>
-                              <TextField alignment="CENTER" promptText="Ex: 76,5" VBox.vgrow="ALWAYS" fx:id="pesoField" />
+                              <TextField fx:id="pesoField" alignment="CENTER" promptText="Ex: 76,5" VBox.vgrow="ALWAYS" />
                            </children>
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="123.0" prefWidth="149.0" spacing="5.0">
@@ -89,7 +89,7 @@
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Label>
-                              <TextField alignment="CENTER" promptText="Ex: 1,75" VBox.vgrow="ALWAYS" fx:id="alturaField" />
+                              <TextField fx:id="alturaField" alignment="CENTER" promptText="Ex: 1,75" VBox.vgrow="ALWAYS" />
                            </children>
                         </VBox>
                      </children>
@@ -97,7 +97,7 @@
                         <Insets />
                      </VBox.margin>
                   </HBox>
-                  <Button mnemonicParsing="false" onAction="#handleFinalizarCadastro" prefHeight="44.0" prefWidth="219.0" styleClass="button-entrar" stylesheets="@../../../style.css" text="Cadastre-se" fx:id="cadastrarButton">
+                  <Button fx:id="cadastrarButton" mnemonicParsing="false" onAction="#handleFinalizarCadastro" prefHeight="44.0" prefWidth="219.0" styleClass="button-entrar" stylesheets="@../../../style.css" text="Cadastre-se">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
@@ -108,7 +108,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Label fx:id="voltar" onMouseClicked="#handleVoltar" text="Já tem uma conta?" textFill="#1257e1" underline="true" >
+                  <Label fx:id="voltar" onMouseClicked="#handleVoltar" text="Já tem uma conta?" textFill="#1257e1" underline="true">
                      <font>
                         <Font name="System Bold" size="17.0" />
                      </font>
