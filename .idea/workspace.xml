@@ -5,12 +5,50 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d1c2ed8d-93e0-40cf-b1c8-c106a811faff" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_11_2024_15_20_[Changes]/Frame.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_11_2024_15_20_[Changes]/Logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_11_2024_15_20_[Changes]/Top_frame.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_11_2024_15_20_[Changes]/icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_11_2024_15_20_[Changes]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_11_2024_15_20__Changes_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/MainApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/dao/GlicoseDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/dao/HipertensaoDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/service/ApiClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/group/nine/healthsystem/cadastro.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/group/nine/healthsystem/dashboard.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/group/nine/healthsystem/login.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/balancas.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/frequencia-cardiaca.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/medidor-de-glicose.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/notificacao.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/pressao-arterial.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/registro.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/relatorio-de-lucro.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/silhueta-de-icone-de-casa.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/usuario-de-perfil.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/Frame.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/Logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/Logo_horizontal.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/Top_frame.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/background.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/background2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/login-icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/senha-icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/HelloApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/dao/UsuarioDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/dao/UsuarioDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Glicose.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Glicose.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Hipertensao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Hipertensao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/MonitoramentoFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/MonitoramentoFacade.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/persistence/EntityManagerFactoryConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/persistence/EntityManagerFactoryConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/service/NotificacaoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/service/NotificacaoService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/view/IndicadorDeSaudeController.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/view/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/view/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/view/NotificacaoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/view/NotificacaoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/view/RelatorioEstadoDeSaudeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/view/RelatorioEstadoDeSaudeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/view/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/view/UsuarioController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
@@ -26,7 +64,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.MainApplication.executor": "Run",
-    "git-widget-placeholder": "junior",
+    "git-widget-placeholder": "Merging desenvolvimento",
     "last_opened_file_path": "C:/Users/Junior/Desktop/WorkSpace/health-system/src/main/resources",
     "node.js.selected.package.tslint": "(autodetect)"
   }
