@@ -63,7 +63,7 @@ public class UsuarioDao {
 
 
     public List<Usuario> findAll() {
-      //  getEmc().getEntityManager().getTransaction().begin();
+        //  getEmc().getEntityManager().getTransaction().begin();
         var query = getEmc().getEntityManager().createNamedQuery("usuarios.listarTodos");
 
         return query.getResultList();
@@ -85,7 +85,7 @@ public class UsuarioDao {
         }
     }
 
-    public Usuario exibirUsuarioPorId(Long id) {
+    public Usuario exibirUsuarioPorId(int id) {
         Usuario usuario = findById(id);
 
         if (usuario == null) {
@@ -109,12 +109,12 @@ public class UsuarioDao {
     }
 
 
-    public Usuario findById(Long id) {
+    public Usuario findById(int id) {
         getEmc().getEntityManager().getTransaction().begin();
         return getEmc().getEntityManager().find(Usuario.class, id);
     }
 
-    public void deleteById(Long id) {
+    public void deleteById(int id) {
         var codigoUsuario = findById(id);
 
         //getEmc().getEntityManager().getTransaction().begin();
@@ -174,26 +174,6 @@ public class UsuarioDao {
             em.close();
             emf.close();
         }
-
-    public Usuario findById(Long id) {
-        getEmc().getEntityManager().getTransaction().begin();
-        return getEmc().getEntityManager().find(Usuario.class, id);
-
-    }
-
-    public void deleteById(Long id) {
-        var usuario = findById(id);
-        getEmc().getEntityManager().getTransaction().begin();
-        getEmc().getEntityManager().remove(usuario);
-        getEmc().getEntityManager().getTransaction().commit();
-        getEmc().getEntityManager().close();
-    }
-
-    public void atualizarUsuario(Usuario usuario) {
-        getEmc().getEntityManager().getTransaction().begin();
-        getEmc().getEntityManager().merge(usuario);
-        getEmc().getEntityManager().getTransaction().commit();
-        getEmc().getEntityManager().close();
 
     }
 
