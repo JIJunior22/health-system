@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c5802069-2f27-4778-bbb6-f40a6a85d0ca" name="Changes" comment="Novos metodos">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Grafico.java" beforeDir="false" />
-    </list>
+    <list default="true" id="c5802069-2f27-4778-bbb6-f40a6a85d0ca" name="Changes" comment="Novos metodos" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -109,7 +105,7 @@
       <workItem from="1732646038971" duration="21189000" />
       <workItem from="1732726199917" duration="4300000" />
       <workItem from="1732900266125" duration="1296000" />
-      <workItem from="1732973201112" duration="2883000" />
+      <workItem from="1732973201112" duration="3614000" />
     </task>
     <task id="LOCAL-00001" summary="Novos metodos">
       <option name="closed" value="true" />
