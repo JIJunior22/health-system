@@ -1,13 +1,22 @@
 package group.nine.healthsystem.domain;
 
+
+import jakarta.persistence.*;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+
 import lombok.Data;
 
 @Entity
 @Data
+
+@NamedQueries({@NamedQuery(name = "glicoses.getByName", query = "select  n from Glicose n where n.nivelGlicose = :nivelGlicose"),
+        @NamedQuery(name="glicoses.listarTodos",query="SELECT g FROM Glicose g")
+})
+
 public class Glicose {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

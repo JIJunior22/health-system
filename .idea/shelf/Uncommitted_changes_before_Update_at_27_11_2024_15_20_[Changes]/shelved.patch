@@ -1,0 +1,306 @@
+Index: src/main/java/group/nine/healthsystem/domain/Login.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package group.nine.healthsystem.domain;\r\n\r\nimport jakarta.persistence.*;\r\nimport lombok.Data;\r\n\r\n@Entity\r\n@Data\r\n@NamedQueries({\r\n        @NamedQuery(name = \"getAll\", query = \"select l from Login l\"),\r\n        @NamedQuery(name = \"removerLogin\", query = \"select l from Login l where l =:l\")\r\n})\r\npublic class Login {\r\n    @Id\r\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\r\n    Long id;\r\n    @Column(unique = true)\r\n    String login;\r\n    String senha;\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/group/nine/healthsystem/domain/Login.java b/src/main/java/group/nine/healthsystem/domain/Login.java
+--- a/src/main/java/group/nine/healthsystem/domain/Login.java	(revision 60daa1624c0f8c3c0a39d9aa0f6573daf608df7f)
++++ b/src/main/java/group/nine/healthsystem/domain/Login.java	(date 1732731251035)
+@@ -12,8 +12,11 @@
+ public class Login {
+     @Id
+     @GeneratedValue(strategy = GenerationType.IDENTITY)
+-    Long id;
++    int id;
+     @Column(unique = true)
+     String login;
+     String senha;
++
++
++
+ }
+Index: src/main/java/group/nine/healthsystem/dao/UsuarioDao.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package group.nine.healthsystem.dao;\r\n\r\nimport group.nine.healthsystem.domain.Usuario;\r\nimport group.nine.healthsystem.persistence.EntityManagerFactoryConnection;\r\nimport jakarta.persistence.EntityManager;\r\nimport jakarta.persistence.EntityManagerFactory;\r\nimport jakarta.persistence.Persistence;\r\n\r\nimport java.util.List;\r\n\r\npublic class UsuarioDao {\r\n    private Usuario logado;\r\n    private EntityManagerFactoryConnection em = new EntityManagerFactoryConnection();\r\n\r\n    public EntityManagerFactoryConnection getEmc() {\r\n        return em;\r\n    }\r\n\r\n    public void criar(Usuario usuario) {\r\n        try {\r\n            // Inicia a transação com o BD\r\n            getEmc().getEntityManager().getTransaction().begin();\r\n            // Realiza a persistencia na tabela\r\n            getEmc().getEntityManager().persist(usuario);\r\n            // Confirmação da transação\r\n            getEmc().getEntityManager().getTransaction().commit();\r\n            System.out.println(String.format(\"\"\"\r\n                            ╔══════════════════════════════════════╗\r\n                            ║         Usuário Cadastrado           ║\r\n                            ╚══════════════════════════════════════╝\r\n                            Código         : %d\r\n                            Nome           : %s\r\n                            Email          : %s\r\n                            Senha          : %s\r\n                            Data Nascimento: %s\r\n                            Sexo           : %s\r\n                            Peso           : %.2f kg\r\n                            Altura         : %.2f m\r\n                            ═══════════════════════════════════════\r\n                            \"\"\",\r\n                    usuario.getCod(),\r\n                    usuario.getNome(),\r\n                    usuario.getEmail(),\r\n                    usuario.getSenha(),\r\n                    usuario.getDataNascimento(),\r\n                    usuario.getSexo(),\r\n                    usuario.getPeso(),\r\n                    usuario.getAltura()));\r\n        } finally {\r\n            getEmc().getEntityManager().close();\r\n        }\r\n    }\r\n\r\n    public Usuario buscarPorNome(String nome) {\r\n        getEmc().getEntityManager().getTransaction().begin();\r\n        var query = getEmc().getEntityManager().createNamedQuery(\"usuarios.getByName\");\r\n        query.setParameter(\"nome\", nome);\r\n        return (Usuario) query.getSingleResult();\r\n\r\n    }\r\n\r\n    public List<Usuario> findAll() {\r\n      //  getEmc().getEntityManager().getTransaction().begin();\r\n        var query = getEmc().getEntityManager().createNamedQuery(\"usuarios.listarTodos\");\r\n\r\n        return query.getResultList();\r\n    }\r\n\r\n    public void exibirTodosUsuarios() {\r\n        List<Usuario> usuarios = findAll();\r\n\r\n        if (usuarios.isEmpty()) {\r\n            System.out.println(\"Nenhum usuário encontrado.\");\r\n        } else {\r\n            System.out.println(\"Lista de usuários encontrados:\");\r\n            for (Usuario usuario : usuarios) {\r\n                System.out.println(String.format(\r\n                        \"COD: %d | Nome: %s | Email: %s | Peso: %.2f | Altura: %.2f\",\r\n                        usuario.getCod(), usuario.getNome(), usuario.getEmail(), usuario.getPeso(), usuario.getAltura()\r\n                ));\r\n            }\r\n        }\r\n    }\r\n\r\n    public Usuario exibirUsuarioPorId(Long id) {\r\n        Usuario usuario = findById(id);\r\n\r\n        if (usuario == null) {\r\n            System.out.println(\"Usuário não encontrado.\");\r\n        } else {\r\n            System.out.println(String.format(\"\"\"\r\n                            ╔══════════════════════════════════════╗\r\n                            ║          Detalhes do Usuário         ║\r\n                            ╚══════════════════════════════════════╝\r\n                            COD          : %d\r\n                            Nome         : %s\r\n                            Email        : %s\r\n                            Peso         : %.2f kg\r\n                            Altura       : %.2f m\r\n                            ═══════════════════════════════════════\r\n                            \"\"\",\r\n                    usuario.getCod(), usuario.getNome(), usuario.getEmail(),\r\n                    usuario.getPeso(), usuario.getAltura()));\r\n        }\r\n        return usuario;\r\n    }\r\n\r\n\r\n    public Usuario findById(Long id) {\r\n        getEmc().getEntityManager().getTransaction().begin();\r\n        return getEmc().getEntityManager().find(Usuario.class, id);\r\n    }\r\n\r\n    public void deleteById(Long id) {\r\n        var codigoUsuario = findById(id);\r\n\r\n        //getEmc().getEntityManager().getTransaction().begin();\r\n        getEmc().getEntityManager().remove(codigoUsuario);\r\n        getEmc().getEntityManager().getTransaction().commit();\r\n        getEmc().getEntityManager().close();\r\n        System.out.println(\"Usuario: \" + codigoUsuario.getNome() + \" removido do banco de dados\");\r\n    }\r\n\r\n\r\n    public void update(Usuario usuarioAtualizado, int id) {\r\n        EntityManagerFactory emf = Persistence.createEntityManagerFactory(\"healthsystem\");\r\n        EntityManager em = emf.createEntityManager();\r\n\r\n        try {\r\n            em.getTransaction().begin();\r\n\r\n            Usuario usuarioExistente = em.find(Usuario.class, id);\r\n\r\n            if (usuarioExistente == null) {\r\n                System.out.println(\"Usuário com ID \" + id + \" não encontrado.\");\r\n                return;\r\n            }\r\n\r\n\r\n            if (usuarioAtualizado.getNome() != null) {\r\n                usuarioExistente.setNome(usuarioAtualizado.getNome());\r\n            }\r\n            if (usuarioAtualizado.getEmail() != null) {\r\n                usuarioExistente.setEmail(usuarioAtualizado.getEmail());\r\n            }\r\n            if (usuarioAtualizado.getSenha() != null) {\r\n                usuarioExistente.setSenha(usuarioAtualizado.getSenha());\r\n            }\r\n            if (usuarioAtualizado.getDataNascimento() != null) {\r\n                usuarioExistente.setDataNascimento(usuarioAtualizado.getDataNascimento());\r\n            }\r\n            if (usuarioAtualizado.getSexo() != null) {\r\n                usuarioExistente.setSexo(usuarioAtualizado.getSexo());\r\n            }\r\n            if (usuarioAtualizado.getPeso() != 0) {\r\n                usuarioExistente.setPeso(usuarioAtualizado.getPeso());\r\n            }\r\n            if (usuarioAtualizado.getAltura() != 0) {\r\n                usuarioExistente.setAltura(usuarioAtualizado.getAltura());\r\n            }\r\n\r\n\r\n            em.merge(usuarioExistente);\r\n            em.getTransaction().commit();\r\n\r\n            System.out.println(\"Dados atualizados para o usuário: \" + usuarioExistente.getNome());\r\n\r\n        } catch (Exception e) {\r\n            System.out.println(e.getMessage());\r\n        } finally {\r\n            em.close();\r\n            emf.close();\r\n        }\r\n    }\r\n\r\n\r\n}\r\n\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/group/nine/healthsystem/dao/UsuarioDao.java b/src/main/java/group/nine/healthsystem/dao/UsuarioDao.java
+--- a/src/main/java/group/nine/healthsystem/dao/UsuarioDao.java	(revision 60daa1624c0f8c3c0a39d9aa0f6573daf608df7f)
++++ b/src/main/java/group/nine/healthsystem/dao/UsuarioDao.java	(date 1732731599157)
+@@ -123,7 +123,11 @@
+ 
+ 
+     public void update(Usuario usuarioAtualizado, int id) {
++
++        //Cria uma fábrica de gerenciadores de entidade para o bd.
+         EntityManagerFactory emf = Persistence.createEntityManagerFactory("healthsystem");
++
++        //gerenciador de entidades para realizar operações no bd
+         EntityManager em = emf.createEntityManager();
+ 
+         try {
+Index: src/main/java/group/nine/healthsystem/HelloApplication.java
+===================================================================
+diff --git a/src/main/java/group/nine/healthsystem/HelloApplication.java b/src/main/java/group/nine/healthsystem/HelloApplication.java
+deleted file mode 100644
+--- a/src/main/java/group/nine/healthsystem/HelloApplication.java	(revision 60daa1624c0f8c3c0a39d9aa0f6573daf608df7f)
++++ /dev/null	(revision 60daa1624c0f8c3c0a39d9aa0f6573daf608df7f)
+@@ -1,23 +0,0 @@
+-package group.nine.healthsystem;
+-
+-import javafx.application.Application;
+-import javafx.fxml.FXMLLoader;
+-import javafx.scene.Scene;
+-import javafx.stage.Stage;
+-
+-import java.io.IOException;
+-
+-public class HelloApplication extends Application {
+-    @Override
+-    public void start(Stage stage) throws IOException {
+-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+-        stage.setTitle("Hello!");
+-        stage.setScene(scene);
+-        stage.show();
+-    }
+-
+-    public static void main(String[] args) {
+-        launch();
+-    }
+-}
+\ No newline at end of file
+Index: src/main/resources/group/nine/healthsystem/login.fxml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/group/nine/healthsystem/login.fxml b/src/main/resources/group/nine/healthsystem/login.fxml
+new file mode 100644
+--- /dev/null	(date 1732731098229)
++++ b/src/main/resources/group/nine/healthsystem/login.fxml	(date 1732731098229)
+@@ -0,0 +1,75 @@
++<?xml version="1.0" encoding="UTF-8"?>
++
++<?import javafx.geometry.Insets?>
++<?import javafx.scene.Cursor?>
++<?import javafx.scene.control.Label?>
++<?import javafx.scene.control.PasswordField?>
++<?import javafx.scene.control.TextField?>
++<?import javafx.scene.image.Image?>
++<?import javafx.scene.image.ImageView?>
++<?import javafx.scene.layout.HBox?>
++<?import javafx.scene.layout.StackPane?>
++<?import javafx.scene.layout.VBox?>
++<?import javafx.scene.text.Font?>
++
++
++<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
++   <children>
++      <HBox alignment="CENTER" maxHeight="600.0" maxWidth="800.0" prefHeight="600.0" prefWidth="800.0">
++         <StackPane.margin>
++            <Insets />
++         </StackPane.margin>
++         <children>
++            <VBox alignment="CENTER" prefHeight="600.0" prefWidth="376.0" spacing="133.0">
++               <children>
++                  <ImageView fitHeight="54.0" fitWidth="396.0" pickOnBounds="true" preserveRatio="true">
++                     <image>
++                        <Image url="@../../../img/Frame.png" />
++                     </image>
++                  </ImageView>
++                  <ImageView fitHeight="294.0" fitWidth="237.0" pickOnBounds="true" preserveRatio="true">
++                     <image>
++                        <Image url="@../../../img/Logo.png" />
++                     </image>
++                  </ImageView>
++                  <ImageView fitHeight="55.0" fitWidth="395.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
++                     <image>
++                        <Image url="@../../../img/Frame.png" />
++                     </image>
++                  </ImageView>
++               </children>
++            </VBox>
++            <VBox alignment="CENTER" prefHeight="600.0" prefWidth="427.0" spacing="30.0" style="-fx-background-color: #46BFB5;">
++               <children>
++                  <Label alignment="TOP_LEFT" text="Bem-vindo(a)!" textFill="WHITE">
++                     <font>
++                        <Font name="BebasNeueBold" size="46.0" />
++                     </font>
++                  </Label>
++                  <TextField prefHeight="45.0" prefWidth="320.0" promptText="E-mail">
++                     <font>
++                        <Font size="16.0" />
++                     </font>
++                  </TextField>
++                  <PasswordField nodeOrientation="LEFT_TO_RIGHT" prefHeight="45.0" promptText="Senha">
++                     <font>
++                        <Font size="16.0" />
++                     </font>
++                  </PasswordField>
++                  <Label alignment="CENTER" text="Cadastre-se" textFill="WHITE" underline="true">
++                     <font>
++                        <Font name="System Bold" size="21.0" />
++                     </font>
++                     <cursor>
++                        <Cursor fx:constant="HAND" />
++                     </cursor>
++                  </Label>
++               </children>
++               <padding>
++                  <Insets left="40.0" right="40.0" />
++               </padding>
++            </VBox>
++         </children>
++      </HBox>
++   </children>
++</StackPane>
+Index: src/main/java/group/nine/healthsystem/MainApplication.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/group/nine/healthsystem/MainApplication.java b/src/main/java/group/nine/healthsystem/MainApplication.java
+new file mode 100644
+--- /dev/null	(date 1732731098227)
++++ b/src/main/java/group/nine/healthsystem/MainApplication.java	(date 1732731098227)
+@@ -0,0 +1,26 @@
++package group.nine.healthsystem;
++
++import javafx.application.Application;
++import javafx.fxml.FXMLLoader;
++import javafx.scene.Scene;
++import javafx.scene.image.Image;
++import javafx.stage.Stage;
++
++import java.io.IOException;
++
++public class MainApplication extends Application {
++    @Override
++    public void start(Stage stage) throws IOException {
++        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login.fxml"));
++        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
++        stage.setTitle("Login");
++        Image icon = new Image("file:src/main/resources/img/icon.png"); // Caminho para o ícone
++        stage.getIcons().add(icon);
++        stage.setScene(scene);
++        stage.show();
++    }
++
++    public static void main(String[] args) {
++        launch();
++    }
++}
+\ No newline at end of file
+Index: pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project xmlns=\"http://maven.apache.org/POM/4.0.0\"\r\n         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n         xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd\">\r\n    <modelVersion>4.0.0</modelVersion>\r\n\r\n    <groupId>group.nine</groupId>\r\n    <artifactId>health-system</artifactId>\r\n    <version>1.0-SNAPSHOT</version>\r\n    <name>health-system</name>\r\n\r\n    <properties>\r\n        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>\r\n        <junit.version>5.10.0</junit.version>\r\n    </properties>\r\n\r\n    <dependencies>\r\n        <dependency>\r\n            <groupId>org.openjfx</groupId>\r\n            <artifactId>javafx-controls</artifactId>\r\n            <version>21</version>\r\n        </dependency>\r\n\r\n<!--        postgres-->\r\n        <dependency>\r\n            <groupId>org.postgresql</groupId>\r\n            <artifactId>postgresql</artifactId>\r\n            <scope>runtime</scope>\r\n        </dependency>\r\n\r\n        <dependency>\r\n            <groupId>org.postgresql</groupId>\r\n            <artifactId>postgresql</artifactId>\r\n            <version>42.6.0</version>\r\n        </dependency>\r\n\r\n\r\n        <dependency>\r\n            <groupId>org.openjfx</groupId>\r\n            <artifactId>javafx-fxml</artifactId>\r\n            <version>21</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.projectlombok</groupId>\r\n            <artifactId>lombok</artifactId>\r\n            <version>1.18.32</version>\r\n            <scope>provided</scope>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.hibernate.orm</groupId>\r\n            <artifactId>hibernate-core</artifactId>\r\n            <version>6.4.8.Final</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.controlsfx</groupId>\r\n            <artifactId>controlsfx</artifactId>\r\n            <version>11.1.2</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>com.dlsc.formsfx</groupId>\r\n            <artifactId>formsfx-core</artifactId>\r\n            <version>11.6.0</version>\r\n            <exclusions>\r\n                <exclusion>\r\n                    <groupId>org.openjfx</groupId>\r\n                    <artifactId>*</artifactId>\r\n                </exclusion>\r\n            </exclusions>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>net.synedra</groupId>\r\n            <artifactId>validatorfx</artifactId>\r\n            <version>0.4.0</version>\r\n            <exclusions>\r\n                <exclusion>\r\n                    <groupId>org.openjfx</groupId>\r\n                    <artifactId>*</artifactId>\r\n                </exclusion>\r\n            </exclusions>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.kordamp.ikonli</groupId>\r\n            <artifactId>ikonli-javafx</artifactId>\r\n            <version>12.3.1</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.kordamp.bootstrapfx</groupId>\r\n            <artifactId>bootstrapfx-core</artifactId>\r\n            <version>0.4.0</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.junit.jupiter</groupId>\r\n            <artifactId>junit-jupiter-api</artifactId>\r\n            <version>${junit.version}</version>\r\n            <scope>test</scope>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.junit.jupiter</groupId>\r\n            <artifactId>junit-jupiter-engine</artifactId>\r\n            <version>${junit.version}</version>\r\n            <scope>test</scope>\r\n        </dependency>\r\n    </dependencies>\r\n\r\n    <build>\r\n        <plugins>\r\n            <plugin>\r\n                <groupId>org.apache.maven.plugins</groupId>\r\n                <artifactId>maven-compiler-plugin</artifactId>\r\n                <version>3.11.0</version>\r\n                <configuration>\r\n                    <source>21</source>\r\n                    <target>21</target>\r\n                </configuration>\r\n            </plugin>\r\n            <plugin>\r\n                <groupId>org.openjfx</groupId>\r\n                <artifactId>javafx-maven-plugin</artifactId>\r\n                <version>0.0.8</version>\r\n                <executions>\r\n                    <execution>\r\n                        <!-- Default configuration for running with: mvn clean javafx:run -->\r\n                        <id>default-cli</id>\r\n                        <configuration>\r\n                            <mainClass>group.nine.healthsystem/group.nine.healthsystem.HelloApplication</mainClass>\r\n                            <launcher>app</launcher>\r\n                            <jlinkZipName>app</jlinkZipName>\r\n                            <jlinkImageName>app</jlinkImageName>\r\n                            <noManPages>true</noManPages>\r\n                            <stripDebug>true</stripDebug>\r\n                            <noHeaderFiles>true</noHeaderFiles>\r\n                        </configuration>\r\n                    </execution>\r\n                </executions>\r\n            </plugin>\r\n        </plugins>\r\n    </build>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/pom.xml b/pom.xml
+--- a/pom.xml	(revision 60daa1624c0f8c3c0a39d9aa0f6573daf608df7f)
++++ b/pom.xml	(date 1732731098224)
+@@ -122,7 +122,7 @@
+                         <!-- Default configuration for running with: mvn clean javafx:run -->
+                         <id>default-cli</id>
+                         <configuration>
+-                            <mainClass>group.nine.healthsystem/group.nine.healthsystem.HelloApplication</mainClass>
++                            <mainClass>group.nine.healthsystem/group.nine.healthsystem.MainApplication</mainClass>
+                             <launcher>app</launcher>
+                             <jlinkZipName>app</jlinkZipName>
+                             <jlinkImageName>app</jlinkImageName>
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"c5802069-2f27-4778-bbb6-f40a6a85d0ca\" name=\"Changes\" comment=\"\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/group/nine/healthsystem/dao/UsuarioDao.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/group/nine/healthsystem/dao/UsuarioDao.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Glicose.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Glicose.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Hipertensao.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Hipertensao.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/MonitoramentoFacade.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/MonitoramentoFacade.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Usuario.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Usuario.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/group/nine/healthsystem/persistence/EntityManagerFactoryConnection.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/group/nine/healthsystem/persistence/EntityManagerFactoryConnection.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/group/nine/healthsystem/service/NotificacaoService.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/group/nine/healthsystem/service/NotificacaoService.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/group/nine/healthsystem/view/UsuarioController.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/group/nine/healthsystem/view/UsuarioController.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/module-info.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/module-info.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"HTML File\" />\r\n        <option value=\"Interface\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"MavenImportPreferences\">\r\n    <option name=\"generalSettings\">\r\n      <MavenGeneralSettings>\r\n        <option name=\"mavenHomeTypeForPersistence\" value=\"WRAPPER\" />\r\n      </MavenGeneralSettings>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 8\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2otSzGBC48mNvh3xGw25qDGzgCh\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"1\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,\r\n    &quot;Application.App.executor&quot;: &quot;Run&quot;,\r\n    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,\r\n    &quot;Application.Main.executor&quot;: &quot;Run&quot;,\r\n    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;junior&quot;,\r\n    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/Users/Junior/Desktop/WorkSpace/chanceUp&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\r\n    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,\r\n    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,\r\n    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\Junior\\Desktop\\WorkSpace\\health-system\\src\\main\\resources\\META-INF\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240\" />\r\n        <option value=\"bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"c5802069-2f27-4778-bbb6-f40a6a85d0ca\" name=\"Changes\" comment=\"\" />\r\n      <created>1731687642486</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1731687642486</updated>\r\n      <workItem from=\"1731687644016\" duration=\"6023000\" />\r\n      <workItem from=\"1731720950715\" duration=\"2652000\" />\r\n      <workItem from=\"1731768966958\" duration=\"3770000\" />\r\n      <workItem from=\"1731799646816\" duration=\"2319000\" />\r\n      <workItem from=\"1731872924696\" duration=\"6362000\" />\r\n      <workItem from=\"1731889301400\" duration=\"601000\" />\r\n      <workItem from=\"1731970951693\" duration=\"2183000\" />\r\n      <workItem from=\"1732055623189\" duration=\"2813000\" />\r\n      <workItem from=\"1732064314256\" duration=\"353000\" />\r\n      <workItem from=\"1732122047971\" duration=\"7210000\" />\r\n      <workItem from=\"1732139613872\" duration=\"12000000\" />\r\n      <workItem from=\"1732214408363\" duration=\"486000\" />\r\n      <workItem from=\"1732214906307\" duration=\"3813000\" />\r\n      <workItem from=\"1732310464148\" duration=\"28000\" />\r\n      <workItem from=\"1732372573658\" duration=\"7889000\" />\r\n      <workItem from=\"1732466412363\" duration=\"2536000\" />\r\n      <workItem from=\"1732554587168\" duration=\"4890000\" />\r\n      <workItem from=\"1732566242268\" duration=\"11492000\" />\r\n      <workItem from=\"1732646038971\" duration=\"21189000\" />\r\n      <workItem from=\"1732726199917\" duration=\"4300000\" />\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 60daa1624c0f8c3c0a39d9aa0f6573daf608df7f)
++++ b/.idea/workspace.xml	(date 1732731546011)
+@@ -5,17 +5,17 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="c5802069-2f27-4778-bbb6-f40a6a85d0ca" name="Changes" comment="">
++      <change afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/MainApplication.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/resources/group/nine/healthsystem/login.fxml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/resources/img/Frame.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/resources/img/Logo.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/resources/img/Top_frame.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/resources/img/icon.png" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/HelloApplication.java" beforeDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/dao/UsuarioDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/dao/UsuarioDao.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Glicose.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Glicose.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Hipertensao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Hipertensao.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/MonitoramentoFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/MonitoramentoFacade.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Usuario.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/persistence/EntityManagerFactoryConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/persistence/EntityManagerFactoryConnection.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/service/NotificacaoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/service/NotificacaoService.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/view/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/view/UsuarioController.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Login.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -52,29 +52,29 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent">{
+-  &quot;keyToString&quot;: {
+-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+-    &quot;Application.App.executor&quot;: &quot;Run&quot;,
+-    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
+-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+-    &quot;git-widget-placeholder&quot;: &quot;junior&quot;,
+-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Junior/Desktop/WorkSpace/chanceUp&quot;,
+-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
++  <component name="PropertiesComponent"><![CDATA[{
++  "keyToString": {
++    "ASKED_ADD_EXTERNAL_FILES": "true",
++    "Application.App.executor": "Run",
++    "Application.HelloApplication.executor": "Run",
++    "Application.Main.executor": "Run",
++    "DefaultHtmlFileTemplate": "HTML File",
++    "RunOnceActivity.ShowReadmeOnStart": "true",
++    "git-widget-placeholder": "Merging junior",
++    "kotlin-language-version-configured": "true",
++    "last_opened_file_path": "C:/Users/Junior/Desktop/WorkSpace/chanceUp",
++    "node.js.detected.package.eslint": "true",
++    "node.js.detected.package.tslint": "true",
++    "node.js.selected.package.eslint": "(autodetect)",
++    "node.js.selected.package.tslint": "(autodetect)",
++    "nodejs_package_manager_path": "npm",
++    "project.structure.last.edited": "Modules",
++    "project.structure.proportion": "0.0",
++    "project.structure.side.proportion": "0.0",
++    "settings.editor.selected.configurable": "preferences.lookFeel",
++    "vue.rearranger.settings.migration": "true"
+   }
+-}</component>
++}]]></component>
+   <component name="RecentsManager">
+     <key name="MoveFile.RECENT_KEYS">
+       <recent name="C:\Users\Junior\Desktop\WorkSpace\health-system\src\main\resources\META-INF" />
