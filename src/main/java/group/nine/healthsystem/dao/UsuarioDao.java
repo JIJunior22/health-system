@@ -1,5 +1,6 @@
 package group.nine.healthsystem.dao;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import group.nine.healthsystem.domain.Usuario;
 import group.nine.healthsystem.persistence.EntityManagerFactoryConnection;
 import jakarta.persistence.EntityManager;
@@ -17,13 +18,15 @@ public class UsuarioDao {
     }
 
     public void criar(Usuario usuario) {
+        // Criptografa a senha do usuário
+        String senhaCriptografada = BCrypt.withDefaults().hashToString(12, usuario.getSenha().toCharArray());
+        usuario.setSenha(senhaCriptografada);
+
         try {
-            // Inicia a transação com o BD
             getEmc().getEntityManager().getTransaction().begin();
-            // Realiza a persistencia na tabela
             getEmc().getEntityManager().persist(usuario);
-            // Confirmação da transação
             getEmc().getEntityManager().getTransaction().commit();
+
 
             System.out.println(String.format("""
                             ╔══════════════════════════════════════╗
@@ -53,6 +56,7 @@ public class UsuarioDao {
         }
     }
 
+
     public Usuario buscarPorNome(String nome) {
         getEmc().getEntityManager().getTransaction().begin();
         var query = getEmc().getEntityManager().createNamedQuery("usuarios.getByName");
@@ -63,7 +67,7 @@ public class UsuarioDao {
 
 
     public List<Usuario> findAll() {
-      //  getEmc().getEntityManager().getTransaction().begin();
+        //  getEmc().getEntityManager().getTransaction().begin();
         var query = getEmc().getEntityManager().createNamedQuery("usuarios.listarTodos");
 
         return query.getResultList();
@@ -77,15 +81,27 @@ public class UsuarioDao {
         } else {
             System.out.println("Lista de usuários encontrados:");
             for (Usuario usuario : usuarios) {
-                System.out.println(String.format(
-                        "COD: %d | Nome: %s | Email: %s | Peso: %.2f | Altura: %.2f",
-                        usuario.getCod(), usuario.getNome(), usuario.getEmail(), usuario.getPeso(), usuario.getAltura()
-                ));
+                System.out.println(String.format("""
+                                ╔═══════════════════════════════╗
+                                ║        Dados do Usuário       ║
+                                ╠═══════════════════════════════╣
+                                ║ Código: %-5d                  ║
+                                ║ Nome  : %-50s                 ║
+                                ║ Email : %-50s                 ║
+                                ║ Peso  : %-10.2f kg            ║
+                                ║ Altura: %-10.2f m             ║
+                                ╚═══════════════════════════════╝
+                                """,
+                        usuario.getCod(),
+                        usuario.getNome(),
+                        usuario.getEmail(),
+                        usuario.getPeso(),
+                        usuario.getAltura()));
             }
         }
     }
 
-    public Usuario exibirUsuarioPorId(Long id) {
+    public Usuario exibirUsuarioPorId(int id) {
         Usuario usuario = findById(id);
 
         if (usuario == null) {
@@ -94,13 +110,13 @@ public class UsuarioDao {
             System.out.println(String.format("""
                             ╔══════════════════════════════════════╗
                             ║          Detalhes do Usuário         ║
+                            ╠══════════════════════════════════════╣
+                            ║ COD          : %d                    ║ 
+                            ║ Nome         : %s                    ║
+                            ║ Email        : %s                    ║
+                            ║ Peso         : %.2f kg               ║
+                            ║ Altura       : %.2f m                ║
                             ╚══════════════════════════════════════╝
-                            COD          : %d
-                            Nome         : %s
-                            Email        : %s
-                            Peso         : %.2f kg
-                            Altura       : %.2f m
-                            ═══════════════════════════════════════
                             """,
                     usuario.getCod(), usuario.getNome(), usuario.getEmail(),
                     usuario.getPeso(), usuario.getAltura()));
@@ -109,12 +125,12 @@ public class UsuarioDao {
     }
 
 
-    public Usuario findById(Long id) {
+    public Usuario findById(int id) {
         getEmc().getEntityManager().getTransaction().begin();
         return getEmc().getEntityManager().find(Usuario.class, id);
     }
 
-    public void deleteById(Long id) {
+    public void deleteById(int id) {
         var codigoUsuario = findById(id);
 
         //getEmc().getEntityManager().getTransaction().begin();
@@ -174,26 +190,6 @@ public class UsuarioDao {
             em.close();
             emf.close();
         }
-
-    public Usuario findById(Long id) {
-        getEmc().getEntityManager().getTransaction().begin();
-        return getEmc().getEntityManager().find(Usuario.class, id);
-
-    }
-
-    public void deleteById(Long id) {
-        var usuario = findById(id);
-        getEmc().getEntityManager().getTransaction().begin();
-        getEmc().getEntityManager().remove(usuario);
-        getEmc().getEntityManager().getTransaction().commit();
-        getEmc().getEntityManager().close();
-    }
-
-    public void atualizarUsuario(Usuario usuario) {
-        getEmc().getEntityManager().getTransaction().begin();
-        getEmc().getEntityManager().merge(usuario);
-        getEmc().getEntityManager().getTransaction().commit();
-        getEmc().getEntityManager().close();
 
     }
 

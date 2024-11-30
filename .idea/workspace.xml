@@ -4,158 +4,37 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c5802069-2f27-4778-bbb6-f40a6a85d0ca" name="Changes" comment="">
+    <list default="true" id="d1c2ed8d-93e0-40cf-b1c8-c106a811faff" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-
-
       <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/dao/UsuarioDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/dao/UsuarioDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/IndicadorDeSaude.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Notificacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Notificacao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/RelatorioEstadoDeSaude.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Usuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
-
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="HTML File" />
-        <option value="Interface" />
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
-      </MavenGeneralSettings>
-    </option>
-  </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 8
-}</component>
-  <component name="ProjectId" id="2otSzGBC48mNvh3xGw25qDGzgCh" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
-  </component>
-
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Application.App.executor": "Run",
-    "Application.HelloApplication.executor": "Run",
-    "Application.Main.executor": "Run",
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Merging junior",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Junior/Desktop/WorkSpace/chanceUp",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "vue.rearranger.settings.migration": "true"
-
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Application.MainApplication.executor&quot;: &quot;Run&quot;,
     &quot;git-widget-placeholder&quot;: &quot;junior&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Junior/Desktop/WorkSpace/chanceUp&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
-
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Junior/Desktop/WorkSpace/health-system/src/main/resources&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;
   }
 }</component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Junior\Desktop\WorkSpace\health-system\src\main\resources\META-INF" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Junior\Desktop\WorkSpace\health-system\src\main\resources" />
+      <recent name="C:\Users\Junior\Desktop\WorkSpace\health-system\src\main\java\group\nine\healthsystem" />
+      <recent name="C:\Users\Junior\Desktop\WorkSpace\health-system\src\main\java\group\nine\healthsystem\view" />
+      <recent name="C:\Users\Junior\Desktop\WorkSpace\health-system\src\main\resources\icons" />
+      <recent name="C:\Users\Junior\Desktop\WorkSpace\health-system\src\main\resources\images" />
     </key>
   </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
-        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
-      </set>
-    </attachedChunks>
-  </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="c5802069-2f27-4778-bbb6-f40a6a85d0ca" name="Changes" comment="" />
-      <created>1731687642486</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1731687642486</updated>
-      <workItem from="1731687644016" duration="6023000" />
-      <workItem from="1731720950715" duration="2652000" />
-      <workItem from="1731768966958" duration="3770000" />
-      <workItem from="1731799646816" duration="2319000" />
-      <workItem from="1731872924696" duration="6362000" />
-      <workItem from="1731889301400" duration="601000" />
-      <workItem from="1731970951693" duration="2183000" />
-      <workItem from="1732055623189" duration="2813000" />
-      <workItem from="1732064314256" duration="353000" />
-      <workItem from="1732122047971" duration="7210000" />
-      <workItem from="1732139613872" duration="12000000" />
-      <workItem from="1732214408363" duration="486000" />
-      <workItem from="1732214906307" duration="3813000" />
-      <workItem from="1732310464148" duration="28000" />
-      <workItem from="1732372573658" duration="7889000" />
-
-      <workItem from="1732466412363" duration="2536000" />
-      <workItem from="1732554587168" duration="4890000" />
-      <workItem from="1732566242268" duration="11492000" />
-      <workItem from="1732646038971" duration="21189000" />
-      <workItem from="1732726199917" duration="4300000" />
-
-      <workItem from="1732466412363" duration="2177000" />
-
-    </task>
     <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
 </project>

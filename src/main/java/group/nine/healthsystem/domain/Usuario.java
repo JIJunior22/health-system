@@ -2,12 +2,13 @@ package group.nine.healthsystem.domain;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
 @Entity
 @Data
-
+@NoArgsConstructor
 @NamedQueries({@NamedQuery(name = "usuarios.getByName", query = "select  n from Usuario n where n.nome = :nome"),
         @NamedQuery(name="usuarios.listarTodos",query="SELECT u FROM Usuario u")
         })
@@ -15,12 +16,6 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int cod;
-
-@NamedQueries({@NamedQuery(name = "usuarios.getByName", query = "select  n from Usuario n where n.nome = :nome")})
-public class Usuario {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     private String nome;
     @Column(unique = true)
     private String email;
@@ -64,15 +59,6 @@ public class Usuario {
     public void exibirUserInfo() {
         String resultadoImc = gerarRelatorioIMC();
         System.out.println(resultadoImc);
-
-        return String.format("""
-                Relatório IMC:
-                Nome: %s
-                Peso: %.2f kg
-                Altura: %.2f m
-                IMC: %.2f
-                Classificação: %s
-                """, nome, peso, altura, imc, classificacao);
     }
 
     private String classificarIMC(double imc) {
