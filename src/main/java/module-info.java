@@ -21,6 +21,7 @@ module group.nine.healthsystem {
 
     requires org.hibernate.orm.core;
     requires java.sql;
+    requires bcrypt;
 
 
     exports group.nine.healthsystem.dao;
