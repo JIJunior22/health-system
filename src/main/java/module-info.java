@@ -18,5 +18,17 @@ module group.nine.healthsystem {
     exports group.nine.healthsystem;
     exports group.nine.healthsystem.domain;
 
+
     requires org.hibernate.orm.core;
+    requires java.sql;
+
+
+    exports group.nine.healthsystem.dao;
+
+    // Permite que o pacote seja acessado pelo módulo javafx.fxml
+    opens group.nine.healthsystem.view to javafx.fxml;
 }
+
+
+
+

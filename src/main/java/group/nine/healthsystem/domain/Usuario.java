@@ -2,12 +2,13 @@ package group.nine.healthsystem.domain;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
 @Entity
 @Data
-
+@NoArgsConstructor
 @NamedQueries({@NamedQuery(name = "usuarios.getByName", query = "select  n from Usuario n where n.nome = :nome"),
         @NamedQuery(name="usuarios.listarTodos",query="SELECT u FROM Usuario u")
         })
