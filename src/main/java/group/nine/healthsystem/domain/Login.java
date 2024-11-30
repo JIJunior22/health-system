@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class Login {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    int id;
     @Column(unique = true)
     String login;
     String senha;

@@ -15,7 +15,7 @@ import java.time.LocalDate;
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int cod;
     private String nome;
     @Column(unique = true)
     private String email;
