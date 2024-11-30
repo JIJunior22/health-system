@@ -3,6 +3,7 @@ package group.nine.healthsystem.view;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -35,6 +36,6 @@ public class LoginController {
             System.err.println("Erro ao carregar a tela de cadastro!");
         }
     }
-}
+    }
 
 

@@ -4,81 +4,127 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d1c2ed8d-93e0-40cf-b1c8-c106a811faff" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_11_2024_15_20_[Changes]/Frame.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_11_2024_15_20_[Changes]/Logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_11_2024_15_20_[Changes]/Top_frame.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_11_2024_15_20_[Changes]/icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_11_2024_15_20_[Changes]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_11_2024_15_20__Changes_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/MainApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/dao/GlicoseDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/dao/HipertensaoDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/service/ApiClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/group/nine/healthsystem/cadastro.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/group/nine/healthsystem/dashboard.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/group/nine/healthsystem/login.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/balancas.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/frequencia-cardiaca.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/medidor-de-glicose.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/notificacao.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/pressao-arterial.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/registro.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/relatorio-de-lucro.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/silhueta-de-icone-de-casa.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/usuario-de-perfil.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/Frame.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/Logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/Logo_horizontal.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/Top_frame.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/background.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/background2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/login-icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/senha-icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/style.css" afterDir="false" />
+    <list default="true" id="c5802069-2f27-4778-bbb6-f40a6a85d0ca" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/HelloApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/dao/UsuarioDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/dao/UsuarioDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Glicose.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Glicose.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Hipertensao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Hipertensao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/MonitoramentoFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/MonitoramentoFacade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Usuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/persistence/EntityManagerFactoryConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/persistence/EntityManagerFactoryConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/service/NotificacaoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/service/NotificacaoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/view/IndicadorDeSaudeController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/view/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/view/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/view/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/view/UsuarioController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/group/nine/healthsystem/cadastro.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/group/nine/healthsystem/cadastro.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="Interface" />
+        <option value="Class" />
+        <option value="CSS File" />
+        <option value="FxmlFile" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2otSzGBC48mNvh3xGw25qDGzgCh" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.MainApplication.executor": "Run",
-    "git-widget-placeholder": "Merging desenvolvimento",
-    "last_opened_file_path": "C:/Users/Junior/Desktop/WorkSpace/health-system/src/main/resources",
-    "node.js.selected.package.tslint": "(autodetect)"
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MainApplication.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;lucas&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Mídias/AppData/Local/SceneBuilder/SceneBuilder.exe&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Junior\Desktop\WorkSpace\health-system\src\main\resources" />
-      <recent name="C:\Users\Junior\Desktop\WorkSpace\health-system\src\main\java\group\nine\healthsystem" />
-      <recent name="C:\Users\Junior\Desktop\WorkSpace\health-system\src\main\java\group\nine\healthsystem\view" />
-      <recent name="C:\Users\Junior\Desktop\WorkSpace\health-system\src\main\resources\icons" />
-      <recent name="C:\Users\Junior\Desktop\WorkSpace\health-system\src\main\resources\images" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Lucas\Desktop\heath-system\src\main\resources\group\nine\healthsystem" />
+      <recent name="C:\Users\Lucas\Desktop\heath-system\src\main\resources" />
+      <recent name="C:\Users\Lucas\Desktop\heath-system\src\main\java\group\nine\healthsystem\view" />
+      <recent name="C:\Users\Junior\Desktop\WorkSpace\health-system\src\main\resources\META-INF" />
     </key>
   </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c5802069-2f27-4778-bbb6-f40a6a85d0ca" name="Changes" comment="" />
+      <created>1731687642486</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1731687642486</updated>
+      <workItem from="1731687644016" duration="6023000" />
+      <workItem from="1731720950715" duration="2652000" />
+      <workItem from="1731768966958" duration="3770000" />
+      <workItem from="1731799646816" duration="2319000" />
+      <workItem from="1731872924696" duration="6362000" />
+      <workItem from="1731889301400" duration="601000" />
+      <workItem from="1731970951693" duration="2183000" />
+      <workItem from="1732055623189" duration="2813000" />
+      <workItem from="1732064314256" duration="353000" />
+      <workItem from="1732122047971" duration="7210000" />
+      <workItem from="1732139613872" duration="12000000" />
+      <workItem from="1732214408363" duration="486000" />
+      <workItem from="1732214906307" duration="3813000" />
+      <workItem from="1732310464148" duration="28000" />
+      <workItem from="1732372573658" duration="7889000" />
+      <workItem from="1732466412363" duration="2177000" />
+      <workItem from="1732386323225" duration="3523000" />
+      <workItem from="1732460563214" duration="8489000" />
+      <workItem from="1732739536293" duration="10540000" />
+      <workItem from="1732815171007" duration="6958000" />
+      <workItem from="1732880568585" duration="3866000" />
+      <workItem from="1732884634171" duration="153000" />
+      <workItem from="1732884830553" duration="7112000" />
+      <workItem from="1732975400742" duration="2222000" />
+      <workItem from="1732988564842" duration="463000" />
+    </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
