@@ -52,7 +52,7 @@ public class UsuarioDao {
                     usuario.getAltura()));
 
         } finally {
-            getEmc().getEntityManager().close();
+
         }
     }
 
@@ -147,7 +147,6 @@ public class UsuarioDao {
 
         try {
             em.getTransaction().begin();
-
             Usuario usuarioExistente = em.find(Usuario.class, id);
 
             if (usuarioExistente == null) {

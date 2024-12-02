@@ -27,7 +27,7 @@ public class LoginDao {
         List<Login> logins = query.getResultList();
 
         for (Login l : logins) {
-            if (l.getLogin().equals(login)) {
+            if (l.getEmail().equals(login)) {
                 getEmc().getEntityManager().remove(l);
                 getEmc().getEntityManager().getTransaction().commit();
                 getEmc().getEntityManager().close();

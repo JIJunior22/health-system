@@ -14,6 +14,9 @@ public class Login {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     @Column(unique = true)
-    String login;
+    String email;
     String senha;
+    @OneToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
 }

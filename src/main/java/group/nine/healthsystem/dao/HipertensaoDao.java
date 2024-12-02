@@ -1,7 +1,10 @@
 package group.nine.healthsystem.dao;
 
+import group.nine.healthsystem.domain.Glicose;
 import group.nine.healthsystem.domain.Hipertensao;
+import group.nine.healthsystem.domain.Usuario;
 import group.nine.healthsystem.persistence.EntityManagerFactoryConnection;
+import jakarta.persistence.NoResultException;
 
 import java.util.List;
 
@@ -13,7 +16,8 @@ public class HipertensaoDao {
 
     }
 
-    public void salvarHipertencao(Hipertensao hipertensao) {
+    public void salvarHipertencao(Hipertensao hipertensao, Usuario usuario) {
+        hipertensao.setUsuario(usuario);
         getEmc().getEntityManager().getTransaction().begin();
         getEmc().getEntityManager().persist(hipertensao);
         getEmc().getEntityManager().getTransaction().commit();
@@ -27,37 +31,28 @@ public class HipertensaoDao {
         return query.getResultList();
     }
 
-    public void exibirDadosPressao() {
+    public List<Hipertensao> exibirDadosPressao(int id) {
 
-        List<Hipertensao> pressoes = listarTodos();
+        //getEmc().getEntityManager().getTransaction().begin();
+        var query = getEmc().getEntityManager()
+                .createQuery("SELECT g FROM Hipertensao g WHERE g.usuario.cod = :idUsuario", Hipertensao.class);
+        query.setParameter("idUsuario", id);
+        return query.getResultList();
+    }
 
-        if (pressoes.isEmpty()) {
-            System.out.println("Nenhum registro de pressão arterial encontrado.");
-        } else {
-            System.out.println("Lista de registros de pressão arterial:");
-            for (Hipertensao pressao : pressoes) {
-                System.out.printf("""
-                                Pressão Sistólica: %.2f mmHg
-                                Pressão Diastólica: %.2f mmHg
-                                Data e Hora: %s
-                                Observações: %s
-                                --------------------------
-                                """,
-                        pressao.getPressaoSistolica(),
-                        pressao.getPressaoDiastolica(),
-                        pressao.getDataHora(),
-                        pressao.getObservacoes());
-            }
+
+    public Hipertensao findById(int id) {
+        try{
+            getEmc().getEntityManager().getTransaction().begin();
+            return getEmc().getEntityManager().find(Hipertensao.class, id);
+        }finally {
+            getEmc().getEntityManager().close();
         }
 
     }
 
-    public Hipertensao findById(Long id) {
-        getEmc().getEntityManager().getTransaction().begin();
-        return getEmc().getEntityManager().find(Hipertensao.class, id);
-    }
 
-    public void deleteById(Long id) {
+    public void deleteById(int id) {
         getEmc().getEntityManager().remove(id);
         getEmc().getEntityManager().getTransaction().commit();
         getEmc().getEntityManager().close();
