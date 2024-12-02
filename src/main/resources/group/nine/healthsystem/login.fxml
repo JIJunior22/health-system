@@ -20,7 +20,7 @@
             <Insets />
          </StackPane.margin>
          <children>
-            <VBox alignment="CENTER" prefHeight="600.0" prefWidth="376.0" spacing="133.0" style="-fx-background-color: #FEFEFE;">
+            <VBox alignment="CENTER" prefHeight="600.0" spacing="133.0" style="-fx-background-color: #FEFEFE;">
                <children>
                   <ImageView fitHeight="54.0" fitWidth="396.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -70,6 +70,11 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
+                  <Label fx:id="errorMessage" text="Erro de login" textFill="RED" visible="false">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Label>
                   <Label fx:id="labelCadastro" alignment="CENTER" onMouseClicked="#handleCadastro" text="Cadastre-se" textFill="WHITE" underline="true">
                      <font>
                         <Font name="System Bold" size="21.0" />
