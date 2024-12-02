@@ -13,8 +13,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import org.controlsfx.control.action.Action;
 
 import java.io.IOException;
+import java.util.List;
 
 public class LoginController {
     @FXML
@@ -48,7 +50,7 @@ public class LoginController {
 
             if (usuario != null) {
                 // Se as credenciais forem válidas, redireciona para a dashboard
-                Stage stage = (Stage) loginEmailField.getScene().getWindow(); // Obtém a janela atual
+                Stage stage = (Stage) entrarButton.getScene().getWindow(); // Obtém a janela atual
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/group/nine/healthsystem/dashboard.fxml"));
                 Parent root = loader.load();  // Carrega o FXML da dashboard
 
@@ -66,11 +68,7 @@ public class LoginController {
         }
     }
 
-    // Método de inicialização para o botão "Entrar"
-    @FXML
-    private void initialize() {
-        entrarButton.setOnAction(event -> handleLogin(null)); // Configura o evento do botão "Entrar"
-    }
+
 
     @FXML
     private void handleCadastro(MouseEvent event) {

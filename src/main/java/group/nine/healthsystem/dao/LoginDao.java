@@ -2,7 +2,7 @@ package group.nine.healthsystem.dao;
 
 import group.nine.healthsystem.domain.Login;
 import group.nine.healthsystem.persistence.EntityManagerFactoryConnection;
-import jakarta.persistence.TypedQuery;
+import jakarta.persistence.NoResultException;
 
 import java.util.List;
 
@@ -48,17 +48,36 @@ public class LoginDao {
 
     public Login verificarLogin(String email, String senha) {
         try {
-            // Criando uma query JPQL para buscar o login pelo email
-            String queryString = "SELECT l FROM Login l WHERE l.email = :email AND l.senha = :senha";
-            TypedQuery<Login> query = getEmc().getEntityManager().createQuery(queryString, Login.class);
+            // Inicia a transação
+            getEmc().getEntityManager().getTransaction().begin();
+
+            // Query JPQL para buscar o usuário
+            var query = getEmc().getEntityManager()
+                    .createQuery("SELECT l FROM Login l WHERE l.email = :email AND l.senha = :senha", Login.class);
             query.setParameter("email", email);
             query.setParameter("senha", senha);
 
-            // Executando a query e retornando o resultado
-            return query.getResultList().stream().findFirst().orElse(null); // Retorna o primeiro resultado ou null se não encontrar
+            // Obtém a lista de resultados
+            List<Login> resultList = query.getResultList();
+
+            // Verifica se encontrou algum resultado
+            if (resultList.isEmpty()) {
+                return null;  // Nenhum usuário encontrado
+            }
+
+            // Retorna o primeiro resultado (usuário)
+            getEmc().getEntityManager().getTransaction().commit();
+            return resultList.get(0);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
+        } finally {
+            // Rollback em caso de erro
+            if (getEmc().getEntityManager().getTransaction().isActive()) {
+                getEmc().getEntityManager().getTransaction().rollback();
+            }
         }
     }
+
+
 }
