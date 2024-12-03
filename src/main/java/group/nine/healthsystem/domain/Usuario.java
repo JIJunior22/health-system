@@ -2,6 +2,7 @@ package group.nine.healthsystem.domain;
 
 import group.nine.healthsystem.dao.GlicoseDao;
 import group.nine.healthsystem.dao.HipertensaoDao;
+import group.nine.healthsystem.dao.LoginDao;
 import group.nine.healthsystem.dao.UsuarioDao;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -16,7 +17,8 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @NamedQueries({@NamedQuery(name = "usuarios.getByName", query = "select  n from Usuario n where n.nome = :nome"),
-        @NamedQuery(name = "usuarios.listarTodos", query = "SELECT u FROM Usuario u")
+        @NamedQuery(name = "usuarios.listar", query = "SELECT u FROM Usuario u"),
+        @NamedQuery(name = "usuarios.logar", query = "SELECT u FROM Usuario u WHERE u.email = :email AND u.senha = :senha")
 })
 public class Usuario {
     @Id
@@ -36,6 +38,9 @@ public class Usuario {
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private List<Hipertensao> hipertensao = new ArrayList<>();
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private List<Hipertensao> login = new ArrayList<>();
 
 
     public double calcularIMC() {
@@ -98,7 +103,11 @@ public class Usuario {
         this.hipertensao.add(hipertensao);
     }
 
-    public static void associarDados(UsuarioDao userDao, Usuario usuario, int sistolica, int diastolica, double glicoseNivel, String hipertensaoObs, String glicoseObs) {
+    public static void associarDados(UsuarioDao userDao,
+                                     Usuario usuario, int sistolica,
+                                     int diastolica, double glicoseNivel,
+                                     String hipertensaoObs, String glicoseObs,
+                                     String email, String senha) {
         // Associar hipertensão
         HipertensaoDao hipertensaoDao = new HipertensaoDao();
         Hipertensao hipertensao = new Hipertensao();
@@ -118,5 +127,15 @@ public class Usuario {
         glicose.setObservacoes(glicoseObs);
         glicose.setUsuario(usuario);
         glicoseDao.salvar(glicose, usuario);
+
+        // Associar Email e senha
+        Login login = new Login();
+        String username = email.split("@")[0];
+        login.setLogin(username);
+        login.setSenha(senha);
+
+        LoginDao loginDao = new LoginDao();
+        loginDao.adicionarLogin(login, usuario);
     }
-}
+    }
+

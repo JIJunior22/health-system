@@ -35,6 +35,7 @@ public class UsuarioDao {
                             Código         : %d
                             Nome           : %s
                             Email          : %s
+                            Login          : %s
                             Senha          : %s
                             Data Nascimento: %s
                             Sexo           : %s
@@ -45,6 +46,7 @@ public class UsuarioDao {
                     usuario.getCod(),
                     usuario.getNome(),
                     usuario.getEmail(),
+                    usuario.getEmail().split("@")[0],
                     usuario.getSenha(),
                     usuario.getDataNascimento(),
                     usuario.getSexo(),
@@ -68,7 +70,7 @@ public class UsuarioDao {
 
     public List<Usuario> findAll() {
         //  getEmc().getEntityManager().getTransaction().begin();
-        var query = getEmc().getEntityManager().createNamedQuery("usuarios.listarTodos");
+        var query = getEmc().getEntityManager().createNamedQuery("usuarios.listar");
 
         return query.getResultList();
     }
@@ -88,6 +90,7 @@ public class UsuarioDao {
                                 ║ Código: %-5d                  ║
                                 ║ Nome  : %-50s                 ║
                                 ║ Email : %-50s                 ║
+                                ║ Login:  %-50s                 ║
                                 ║ Peso  : %-10.2f kg            ║
                                 ║ Altura: %-10.2f m             ║
                                 ╚═══════════════════════════════╝
@@ -95,6 +98,7 @@ public class UsuarioDao {
                         usuario.getCod(),
                         usuario.getNome(),
                         usuario.getEmail(),
+                        usuario.getEmail().split("@")[0],
                         usuario.getPeso(),
                         usuario.getAltura()));
             }
@@ -160,9 +164,6 @@ public class UsuarioDao {
             }
             if (usuarioAtualizado.getEmail() != null) {
                 usuarioExistente.setEmail(usuarioAtualizado.getEmail());
-            }
-            if (usuarioAtualizado.getSenha() != null) {
-                usuarioExistente.setSenha(usuarioAtualizado.getSenha());
             }
             if (usuarioAtualizado.getDataNascimento() != null) {
                 usuarioExistente.setDataNascimento(usuarioAtualizado.getDataNascimento());

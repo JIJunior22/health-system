@@ -34,21 +34,7 @@ public class GlicoseDao {
         return query.getResultList();
     }
 
-    public List<Login> verificarLogin(String email, String senha) {
-        try {
-            // Criando uma query JPQL para buscar o login pelo email
-            getEm().getEntityManager().getTransaction().begin();
-            var query = getEm().getEntityManager().createQuery("SELECT l FROM Login l WHERE l.email = :email AND l.senha = :senha", Login.class);
-            query.setParameter("email", email);
-            query.setParameter("senha", senha);
 
-            // Executando a query e retornando o resultado
-            return query.getResultList();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
 
     public void exibirDados(int usuario) {
         List<Glicose> glicoses = listar(usuario);

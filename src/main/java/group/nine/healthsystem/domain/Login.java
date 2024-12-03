@@ -12,11 +12,11 @@ import lombok.Data;
 public class Login {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    int id;
     @Column(unique = true)
-    String email;
+    String login;
     String senha;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 }
