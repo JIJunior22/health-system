@@ -6,7 +6,9 @@ import group.nine.healthsystem.dao.LoginDao;
 import group.nine.healthsystem.dao.UsuarioDao;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+
 import lombok.ToString;
 
 import java.time.LocalDate;
@@ -16,6 +18,7 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
+
 @NamedQueries({@NamedQuery(name = "usuarios.getByName", query = "select  n from Usuario n where n.nome = :nome"),
         @NamedQuery(name = "usuarios.listar", query = "SELECT u FROM Usuario u"),
         @NamedQuery(name = "usuarios.logar", query = "SELECT u FROM Usuario u WHERE u.email = :email AND u.senha = :senha")
@@ -62,25 +65,14 @@ public class Usuario {
         double imc = calcularIMC();
         String classificacao = classificarIMC(imc);
 
-
         return String.format("""
-                ╔══════════════════════════════════════╗
-                ║          Relatório de IMC            ║
-                ╚══════════════════════════════════════╝
-                Nome           : %s
-                Peso           : %.2f kg
-                Altura         : %.2f m
-                IMC            : %.2f
-                Classificação  : %s
-                ═══════════════════════════════════════
+                Relatório IMC:
+                Nome: %s
+                Peso: %.2f kg
+                Altura: %.2f m
+                IMC: %.2f
+                Classificação: %s
                 """, nome, peso, altura, imc, classificacao);
-
-
-    }
-
-    public void exibirUserInfo() {
-        String resultadoImc = gerarRelatorioIMC();
-        System.out.println(resultadoImc);
     }
 
     public String classificarIMC(double imc) {

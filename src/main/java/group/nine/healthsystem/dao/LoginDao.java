@@ -3,6 +3,7 @@ package group.nine.healthsystem.dao;
 import group.nine.healthsystem.domain.Login;
 import group.nine.healthsystem.domain.Usuario;
 import group.nine.healthsystem.persistence.EntityManagerFactoryConnection;
+
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.Persistence;
@@ -34,7 +35,7 @@ public class LoginDao {
         List<Login> logins = query.getResultList();
 
         for (Login l : logins) {
-            if (l.getLogin().equals(login)) {
+            if (l.getEmail().equals(login)) {
                 getEmc().getEntityManager().remove(l);
                 getEmc().getEntityManager().getTransaction().commit();
                 getEmc().getEntityManager().close();
@@ -125,6 +126,7 @@ public class LoginDao {
         System.out.println("Login bem-sucedido.");
         return true;
     }
+
 
 
 }
