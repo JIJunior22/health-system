@@ -90,14 +90,14 @@ public class LoginDao {
     public Login findByEmailSenha(String email, String senha) {
         try {
             var query = getEmc().getEntityManager()
-                    .createQuery("SELECT l FROM Login l WHERE l.login = :email AND l.senha = :senha", Login.class);
+                    .createQuery("SELECT l FROM Login l WHERE l.email = :email AND l.senha = :senha", Login.class);
             query.setParameter("email", email);
             query.setParameter("senha", senha);
 
             Login login = query.getSingleResult();
 
             if (login != null) {
-                System.out.println("Login encontrado para o usuario: " + login.getLogin());
+                System.out.println("Login encontrado para o usuario: " + login.getEmail());
             }
 
             return login;

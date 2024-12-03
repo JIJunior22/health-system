@@ -3,8 +3,11 @@ package group.nine.healthsystem.domain;
 import group.nine.healthsystem.dao.LoginDao;
 import group.nine.healthsystem.dao.UsuarioDao;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import static group.nine.healthsystem.domain.Usuario.associarDados;
 
 public class App {
     public static void main(String[] args) {
@@ -142,11 +145,11 @@ public class App {
 
 
        //USUARIO INCLUIDONDO LOGIN E SENHA
-     Usuario diuare = new Usuario();
-//        diuare.setNome("Renê Gadelha");
+//     Usuario diuare = new Usuario();
+//        diuare.setNome("Luciano Tavares");
 //        diuare.setPeso(60.0);
 //        diuare.setAltura(1.55);
-//        diuare.setEmail("rene.gadelha@gmail.com");
+//        diuare.setEmail("luciano@gmail.com");
 //        diuare.setSenha("123");
 //        diuare.setSexo("M");
 //        diuare.setDataNascimento(LocalDate.of(1988, 7, 19));
@@ -154,7 +157,7 @@ public class App {
 ////
 //        userDao.criar(diuare);
 //
-    //  associarDados(userDao, diuare, 140, 90, 90, "Pressão aferida antes de exercício físico.", "Glicose não medida em jejum.","rene.gadelha@gmail.com","123");
+//      associarDados(userDao, diuare, 140, 90, 90, "Pressão aferida antes de exercício físico.", "Glicose não medida em jejum.","luciano@gmail.com","123");
 
         //   ========================= FIM  CRIAÇÃO DE USUARIOS ===============================
 //
@@ -169,7 +172,7 @@ public class App {
         //TESTES DE VALIDAÇÃO DE LOGIN
         LoginDao loginDao = new LoginDao();
 //        userDao.exibirTodosUsuarios();
-       // loginDao.validarLogin("rene.gadelha","123");
+       loginDao.validarLogin("erica@gmail.com","123");
     }
 
 
