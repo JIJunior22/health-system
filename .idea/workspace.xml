@@ -6,13 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="c5802069-2f27-4778-bbb6-f40a6a85d0ca" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-
-      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/dao/GlicoseDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/dao/GlicoseDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/dao/LoginDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/dao/LoginDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/dao/UsuarioDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/dao/UsuarioDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Login.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Usuario.java" afterDir="false" />
-
+      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/view/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/view/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/group/nine/healthsystem/dashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/group/nine/healthsystem/dashboard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/group/nine/healthsystem/novo-registro.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/group/nine/healthsystem/novo-registro.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,21 +22,17 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-
         <option value="Class" />
-
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
 }</component>
   <component name="ProjectId" id="2pcCY2Em2B6bRQ8PutnVJpl3Ygi" />
-
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
@@ -46,19 +42,17 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-
     "Application.App.executor": "Run",
     "Application.LoginDao.executor": "Run",
     "Application.MainApplication.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "junior",
+    "git-widget-placeholder": "lucas",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Junior/Desktop/WorkSpace/health-system/src/main/resources",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -70,7 +64,6 @@
       <recent name="C:\Users\Junior\Desktop\WorkSpace\health-system\src\main\resources\META-INF" />
     </key>
   </component>
-
   <component name="RunManager">
     <configuration name="LoginDao" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="group.nine.healthsystem.dao.LoginDao" />
@@ -102,7 +95,6 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-
       <changelist id="d1c2ed8d-93e0-40cf-b1c8-c106a811faff" name="Changes" comment="" />
       <created>1733056024104</created>
       <option name="number" value="Default" />
@@ -120,5 +112,15 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/group/nine/healthsystem/dao/LoginDao.java</url>
+          <line>101</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
 </project>

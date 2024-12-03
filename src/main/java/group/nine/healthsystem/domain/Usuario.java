@@ -122,8 +122,7 @@ public class Usuario {
 
         // Associar Email e senha
         Login login = new Login();
-        String username = email.split("@")[0];
-        login.setLogin(username);
+        login.setEmail(email);
         login.setSenha(senha);
 
         LoginDao loginDao = new LoginDao();
