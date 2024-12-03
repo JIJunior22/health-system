@@ -18,6 +18,7 @@ public class Login {
     @Column(unique = true)
     String email;
     String senha;
+
     @ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;

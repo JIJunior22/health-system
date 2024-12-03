@@ -143,7 +143,6 @@ public class App {
 //
 //        associarDados(userDao, jogador2, 135, 88, 95.0, "Pressão aferida após exercício físico.", "Glicose medida em jejum.");
 
-
         //USUARIO INCLUIDONDO LOGIN E SENHA
 //     Usuario diuare = new Usuario();
 //        diuare.setNome("Yan Kennedy");
@@ -158,6 +157,7 @@ public class App {
 //        userDao.criar(diuare);
 //
 //      associarDados(userDao, diuare, 140, 90, 90, "Pressão aferida antes de exercício físico.", "Glicose não medida em jejum.","kennedy.yan8@gmail.com","123");
+
 
         //   ========================= FIM  CRIAÇÃO DE USUARIOS ===============================
 //
@@ -201,7 +201,6 @@ public class App {
         LoginDao loginDao = new LoginDao();
 ////        userDao.exibirTodosUsuarios();
         loginDao.validarLogin("kennedy.yan8@gmail.com","cuzao123");
-
 
     }
 }

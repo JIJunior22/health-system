@@ -73,5 +73,6 @@ public class Usuario {
     public void addHipertensao(Hipertensao hipertensao) {
         this.hipertensao.add(hipertensao);
     }
+
 }
 

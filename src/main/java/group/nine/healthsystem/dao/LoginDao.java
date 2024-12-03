@@ -11,13 +11,15 @@ import jakarta.persistence.NoResultException;
 import jakarta.persistence.Persistence;
 
 import java.util.List;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 public class LoginDao {
     private EntityManagerFactoryConnection em = new EntityManagerFactoryConnection();
     private EntityManagerFactory emf;
 
     public EntityManagerFactoryConnection getEmc() {
-        this.emf = Persistence.createEntityManagerFactory("healthsystem");
+        this.emf = Persistence.createEntityManagerFactory("healthSystem");
         return em;
     }
 
@@ -112,10 +114,13 @@ public class LoginDao {
         EntityManager em = getEmc().getEntityManager();
 
         try {
+
             var query = em.createQuery("SELECT l FROM Login l WHERE l.email = :email", Login.class);
+
             query.setParameter("email", email);
 
             Login login = query.getSingleResult();
+
             // Verifica se a senha fornecida corresponde ao hash armazenado
             if (BCrypt.verifyer().verify(senha.toCharArray(), login.getSenha()).verified) {
                 return login;
