@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="600.0" prefWidth="800.0" spacing="10.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" prefHeight="600.0" prefWidth="800.0" spacing="10.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label text="Novo Registro" textAlignment="CENTER" textFill="#28b984">
          <font>
@@ -144,7 +144,7 @@
             <Insets />
          </VBox.margin>
       </HBox>
-      <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="179.0" text="Salvar" />
+      <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="179.0" styleClass="button-entrar" stylesheets="@../../../style.css" text="Salvar" />
    </children>
    <padding>
       <Insets top="20.0" />

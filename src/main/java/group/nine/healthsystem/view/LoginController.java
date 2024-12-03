@@ -70,7 +70,6 @@ public class LoginController {
     }
 
 
-
     @FXML
     private void handleCadastro(MouseEvent event) {
         try {
