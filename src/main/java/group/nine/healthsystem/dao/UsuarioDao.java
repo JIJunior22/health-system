@@ -35,7 +35,7 @@ public class UsuarioDao {
                             Código         : %d
                             Nome           : %s
                             Email          : %s
-                            Login          : %s
+                            
                             Senha          : %s
                             Data Nascimento: %s
                             Sexo           : %s
@@ -46,7 +46,6 @@ public class UsuarioDao {
                     usuario.getCod(),
                     usuario.getNome(),
                     usuario.getEmail(),
-                    usuario.getEmail().split("@")[0],
                     usuario.getSenha(),
                     usuario.getDataNascimento(),
                     usuario.getSexo(),

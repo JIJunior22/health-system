@@ -146,18 +146,18 @@ public class App {
 
        //USUARIO INCLUIDONDO LOGIN E SENHA
 //     Usuario diuare = new Usuario();
-//        diuare.setNome("Luciano Tavares");
-//        diuare.setPeso(60.0);
-//        diuare.setAltura(1.55);
-//        diuare.setEmail("luciano@gmail.com");
+//        diuare.setNome("Yan Kennedy");
+//        diuare.setPeso(74.0);
+//        diuare.setAltura(1.75);
+//        diuare.setEmail("kennedy.yan8@gmail.com");
 //        diuare.setSenha("123");
 //        diuare.setSexo("M");
-//        diuare.setDataNascimento(LocalDate.of(1988, 7, 19));
+//        diuare.setDataNascimento(LocalDate.of(2006, 1, 18));
 //        usuarios.add(diuare);
 ////
 //        userDao.criar(diuare);
 //
-//      associarDados(userDao, diuare, 140, 90, 90, "Pressão aferida antes de exercício físico.", "Glicose não medida em jejum.","luciano@gmail.com","123");
+//      associarDados(userDao, diuare, 140, 90, 90, "Pressão aferida antes de exercício físico.", "Glicose não medida em jejum.","kennedy.yan8@gmail.com","123");
 
         //   ========================= FIM  CRIAÇÃO DE USUARIOS ===============================
 //
@@ -172,7 +172,7 @@ public class App {
         //TESTES DE VALIDAÇÃO DE LOGIN
         LoginDao loginDao = new LoginDao();
 //        userDao.exibirTodosUsuarios();
-       loginDao.validarLogin("erica@gmail.com","123");
+     loginDao.validarLogin("kennedy.yan8@gmail.com","123");
     }
 
 
