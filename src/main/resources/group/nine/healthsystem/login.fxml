@@ -62,7 +62,7 @@
                         <Insets />
                      </VBox.margin>
                   </PasswordField>
-                  <Button fx:id="entrarButton" mnemonicParsing="false" prefHeight="45.0" prefWidth="179.0" styleClass="button-entrar" stylesheets="@../../../style.css" text="Entrar">
+                  <Button fx:id="entrarButton" mnemonicParsing="false" onMouseClicked="#handleLogin" prefHeight="45.0" prefWidth="179.0" styleClass="button-entrar" stylesheets="@../../../style.css" text="Entrar">
                      <font>
                         <Font size="20.0" />
                      </font>
