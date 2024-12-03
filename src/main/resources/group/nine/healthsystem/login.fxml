@@ -20,7 +20,7 @@
             <Insets />
          </StackPane.margin>
          <children>
-            <VBox alignment="CENTER" prefHeight="600.0" prefWidth="376.0" spacing="133.0" style="-fx-background-color: #FEFEFE;">
+            <VBox alignment="CENTER" prefHeight="600.0" spacing="133.0" style="-fx-background-color: #FEFEFE;">
                <children>
                   <ImageView fitHeight="54.0" fitWidth="396.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -46,7 +46,7 @@
                         <Font name="BebasNeueBold" size="46.0" />
                      </font>
                   </Label>
-                  <TextField prefHeight="45.0" promptText="E-mail" styleClass="textfield-icon">
+                  <TextField fx:id="loginEmailField" prefHeight="45.0" promptText="E-mail" styleClass="textfield-icon">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -54,7 +54,7 @@
                         <Insets />
                      </VBox.margin>
                   </TextField>
-                  <PasswordField nodeOrientation="LEFT_TO_RIGHT" prefHeight="45.0" promptText="Senha" styleClass="senha-icon">
+                  <PasswordField fx:id="senhaEmailField" nodeOrientation="LEFT_TO_RIGHT" prefHeight="45.0" promptText="Senha" styleClass="senha-icon">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -62,7 +62,7 @@
                         <Insets />
                      </VBox.margin>
                   </PasswordField>
-                  <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="179.0" styleClass="button-entrar" stylesheets="@../../../style.css" text="Entrar">
+                  <Button fx:id="entrarButton" mnemonicParsing="false" onMouseClicked="#handleLogin" prefHeight="45.0" prefWidth="179.0" styleClass="button-entrar" stylesheets="@../../../style.css" text="Entrar">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -70,6 +70,11 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
+                  <Label fx:id="errorMessage" text="Erro de login" textFill="RED" visible="false">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Label>
                   <Label fx:id="labelCadastro" alignment="CENTER" onMouseClicked="#handleCadastro" text="Cadastre-se" textFill="WHITE" underline="true">
                      <font>
                         <Font name="System Bold" size="21.0" />

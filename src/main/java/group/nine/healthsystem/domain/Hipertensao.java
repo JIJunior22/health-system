@@ -56,9 +56,9 @@ public class Hipertensao {
                 .append(String.format("Observações: %s\n", observacoes));
 
         if (verificarRisco()) {
-            relatorio.append("⚠️ Atenção: Valores indicam risco elevado! Procure um médico imediatamente.\n");
+            relatorio.append("Atenção: Valores indicam risco elevado! Procure um médico imediatamente.\n");
         } else {
-            relatorio.append("✅ Pressão dentro de limites aceitáveis.\n");
+            relatorio.append("Pressão dentro de limites aceitáveis.\n");
         }
 
         return relatorio.toString();
