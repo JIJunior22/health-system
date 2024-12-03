@@ -46,17 +46,18 @@ public class LoginController {
             LoginDao loginDao = new LoginDao();
 
             // Verificando as credenciais
-            Login usuario = loginDao.verificarLogin(email, senha);
+            boolean usuarioValido = loginDao.validarLogin(email, senha);
 
-            if (usuario != null) {
+            if (usuarioValido) {
                 // Se as credenciais forem válidas, redireciona para a dashboard
-                Stage stage = (Stage) entrarButton.getScene().getWindow(); // Obtém a janela atual
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/group/nine/healthsystem/dashboard.fxml"));
                 Parent root = loader.load();  // Carrega o FXML da dashboard
 
                 // Configura a nova cena (dashboard)
-                stage.setScene(new Scene(root));
-                stage.show();
+                Stage stage = (Stage) entrarButton.getScene().getWindow();
+                Pane mainPane = (Pane) stage.getScene().getRoot();
+                mainPane.getChildren().clear();
+                mainPane.getChildren().add(root);
             } else {
                 // Se o login falhar, exibe mensagem de erro
                 errorMessage.setText("Email ou senha incorretos!");
@@ -67,7 +68,6 @@ public class LoginController {
             errorMessage.setText("Erro ao carregar o dashboard.");
         }
     }
-
 
 
     @FXML

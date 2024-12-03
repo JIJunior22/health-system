@@ -144,20 +144,20 @@ public class App {
 //        associarDados(userDao, jogador2, 135, 88, 95.0, "Pressão aferida após exercício físico.", "Glicose medida em jejum.");
 
 
-       //USUARIO INCLUIDONDO LOGIN E SENHA
-//        Usuario diuare = new Usuario();
-//        diuare.setNome("Renê Gadelha");
-//        diuare.setPeso(60.0);
-//        diuare.setAltura(1.55);
-//        diuare.setEmail("rene.gadelha@gmail.com");
-//        diuare.setSenha("123");
-//        diuare.setSexo("M");
-//        diuare.setDataNascimento(LocalDate.of(1988, 7, 19));
-//        usuarios.add(diuare);
-////
-//        userDao.criar(diuare);
+//       USUARIO INCLUIDONDO LOGIN E SENHA
+        Usuario diuare = new Usuario();
+        diuare.setNome("Lucas Silva");
+        diuare.setPeso(70);
+        diuare.setAltura(1.90);
+        diuare.setEmail("lucas@gmail.com");
+        diuare.setSenha("123");
+        diuare.setSexo("M");
+        diuare.setDataNascimento(LocalDate.of(1992, 3, 19));
+        usuarios.add(diuare);
 //
-//        associarDados(userDao, diuare, 135, 88, 95.0, "Pressão aferida após exercício físico.", "Glicose medida em jejum.","rene.gadelha@gmail.com","123");
+        userDao.criar(diuare);
+//
+        associarDados(userDao, diuare, 135, 88, 95.0, "Pressão aferida após exercício físico.", "Glicose medida em jejum.","lucas@gmail.com","123");
 
         //   ========================= FIM  CRIAÇÃO DE USUARIOS ===============================
 //
@@ -170,9 +170,9 @@ public class App {
 
 
         //TESTES DE VALIDAÇÃO DE LOGIN
-        LoginDao loginDao = new LoginDao();
+//        LoginDao loginDao = new LoginDao();
 //        userDao.exibirTodosUsuarios();
-        loginDao.validarLogin("rene.gadelha","123");
+//        loginDao.validarLogin("lukaspersy@yahoo.com","shadal00");
     }
 
 }
