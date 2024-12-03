@@ -1,7 +1,6 @@
 package group.nine.healthsystem.domain;
 
 
-
 import jakarta.persistence.*;
 
 import jakarta.persistence.Entity;
@@ -15,7 +14,8 @@ import lombok.Data;
 @Data
 
 @NamedQueries({@NamedQuery(name = "hipertencoes.getByName", query = "select  h from Hipertensao h where h.pressaoSistolica = :pressaoSistolica"),
-        @NamedQuery(name="hipertencoes.listarTodos",query="SELECT ps FROM Hipertensao ps")
+        @NamedQuery(name = "hipertencoes.listarTodos", query = "SELECT ps FROM Hipertensao ps"),
+        @NamedQuery(name = "hipertensoes.getById", query = "select h from Hipertensao h where h.id = :id")
 })
 
 
@@ -25,8 +25,12 @@ public class Hipertensao {
     private Long id;
     private double pressaoSistolica;//(Pressão máxima)
     private double pressaoDiastolica;//(Pressão mínima)
+    private double frequenciaCardiaca;
     private String dataHora;//(Data e hora do registro)
-    private String observacoes;//(Anotações adicionais)
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
+    private String observacoes;
 
 
     public void registrarPressao(double sistolica, double diastolica, String observacoes) {
