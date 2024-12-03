@@ -79,10 +79,10 @@ public class LoginDao {
         return query.getResultList();
     }
 
-    public Usuario exibirUsuarioPorId(int id) {
-        Usuario usuario = findById(id);
+    public Login exibirLoginPorId(int id) {
+        Login login = findById(id);
 
-        if (usuario == null) {
+        if (login == null) {
             System.out.println("Usuário não encontrado.");
         } else {
             System.out.println(String.format("""
@@ -96,16 +96,16 @@ public class LoginDao {
                             ║                                      ║
                             ╚══════════════════════════════════════╝
                             """,
-                    usuario.getNome(), usuario.getEmail()
+                    login.getUsuario().getNome(), login.getEmail()
             ));
         }
-        return usuario;
+        return login;
     }
 
 
-    public Usuario findById(int id) {
+    public Login findById(int id) {
         getEmc().getEntityManager().getTransaction().begin();
-        return getEmc().getEntityManager().find(Usuario.class, id);
+        return getEmc().getEntityManager().find(Login.class, id);
     }
 
     public Login findByEmailSenha(String email, String senha) {

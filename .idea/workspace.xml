@@ -9,6 +9,8 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/dao/LoginDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/dao/LoginDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/dao/UsuarioDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/dao/UsuarioDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/view/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/view/UsuarioController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +84,7 @@
       <workItem from="1733100064216" duration="121000" />
       <workItem from="1733162082810" duration="6068000" />
       <workItem from="1733177760599" duration="12728000" />
-      <workItem from="1733259010264" duration="2427000" />
+      <workItem from="1733259010264" duration="4286000" />
     </task>
     <servers />
   </component>

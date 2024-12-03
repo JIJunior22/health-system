@@ -87,8 +87,7 @@ public class UsuarioController {
         //        criar usuário
         Usuario usuario = new Usuario();
         usuario.setNome(nome);
-        usuario.setEmail(email);
-        usuario.setSenha(senha);
+
         usuario.setDataNascimento(dataDeNascimento);
         usuario.setSexo(sexo.toString());
         usuario.setPeso(Double.parseDouble(peso));
