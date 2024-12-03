@@ -1,9 +1,11 @@
 package group.nine.healthsystem.dao;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import group.nine.healthsystem.domain.Login;
 import group.nine.healthsystem.domain.Usuario;
 import group.nine.healthsystem.persistence.EntityManagerFactoryConnection;
 
+import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.Persistence;
@@ -22,12 +24,30 @@ public class LoginDao {
     }
 
     public void adicionarLogin(Login login, Usuario usuario) {
-        login.setUsuario(usuario);
-        getEmc().getEntityManager().getTransaction().begin();
-        getEmc().getEntityManager().persist(login);
-        getEmc().getEntityManager().getTransaction().commit();
-        getEmc().getEntityManager().close();
+        EntityManager em = getEmc().getEntityManager();
 
+        try {
+            // Criptografa a senha do usuário
+            String senhaCriptografada = BCrypt.withDefaults().hashToString(12, login.getSenha().toCharArray());
+            login.setSenha(senhaCriptografada);
+
+            // Associa o login ao usuário
+            login.setUsuario(usuario);
+
+            // Inicia a transação
+            em.getTransaction().begin();
+            em.persist(login);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            if (em.isOpen()) {
+                em.close();
+            }
+        }
     }
 
     public void deletarLogin(String login) {
@@ -61,10 +81,10 @@ public class LoginDao {
         return query.getResultList();
     }
 
-    public Usuario exibirUsuarioPorId(int id) {
-        Usuario usuario = findById(id);
+    public Login exibirLoginPorId(int id) {
+        Login login = findById(id);
 
-        if (usuario == null) {
+        if (login == null) {
             System.out.println("Usuário não encontrado.");
         } else {
             System.out.println(String.format("""
@@ -78,31 +98,36 @@ public class LoginDao {
                             ║                                      ║
                             ╚══════════════════════════════════════╝
                             """,
-                    usuario.getNome(), usuario.getEmail()
+                    login.getUsuario().getNome(), login.getEmail()
             ));
         }
-        return usuario;
+        return login;
     }
 
 
-    public Usuario findById(int id) {
+    public Login findById(int id) {
         getEmc().getEntityManager().getTransaction().begin();
-        return getEmc().getEntityManager().find(Usuario.class, id);
+        return getEmc().getEntityManager().find(Login.class, id);
     }
+
     public Login findByEmailSenha(String email, String senha) {
+        EntityManager em = getEmc().getEntityManager();
+
         try {
-            var query = getEmc().getEntityManager()
-                    .createQuery("SELECT l FROM Login l WHERE l.email = :email AND l.senha = :senha", Login.class);
+
+            var query = em.createQuery("SELECT l FROM Login l WHERE l.email = :email", Login.class);
+
             query.setParameter("email", email);
-            query.setParameter("senha", senha);
 
             Login login = query.getSingleResult();
 
-            if (login != null) {
-                System.out.println("Login encontrado para o usuario: " + login.getEmail());
+            // Verifica se a senha fornecida corresponde ao hash armazenado
+            if (BCrypt.verifyer().verify(senha.toCharArray(), login.getSenha()).verified) {
+                return login;
+            } else {
+                System.out.println("Senha inválida.");
+                return null;
             }
-
-            return login;
         } catch (NoResultException e) {
             System.out.println("Nenhum login encontrado para o email: " + email);
             return null;
@@ -111,6 +136,7 @@ public class LoginDao {
             return null;
         }
     }
+
     public boolean validarLogin(String email, String senha) {
 
         if (email == null || senha == null || email.isEmpty() || senha.isEmpty()) {
@@ -128,7 +154,6 @@ public class LoginDao {
         System.out.println("Login bem-sucedido.");
         return true;
     }
-
 
 
 }

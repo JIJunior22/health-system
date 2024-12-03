@@ -2,12 +2,12 @@ package group.nine.healthsystem.domain;
 
 import group.nine.healthsystem.dao.LoginDao;
 import group.nine.healthsystem.dao.UsuarioDao;
+import group.nine.healthsystem.service.UsuarioService;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import static group.nine.healthsystem.domain.Usuario.associarDados;
 
 public class App {
     public static void main(String[] args) {
@@ -143,21 +143,21 @@ public class App {
 //
 //        associarDados(userDao, jogador2, 135, 88, 95.0, "Pressão aferida após exercício físico.", "Glicose medida em jejum.");
 
+        //USUARIO INCLUIDONDO LOGIN E SENHA
+//     Usuario diuare = new Usuario();
+//        diuare.setNome("Yan Kennedy");
+//        diuare.setPeso(74.0);
+//        diuare.setAltura(1.75);
+//        diuare.setEmail("kennedy.yan8@gmail.com");
+//        diuare.setSenha("123");
+//        diuare.setSexo("M");
+//        diuare.setDataNascimento(LocalDate.of(2006, 1, 18));
+//        usuarios.add(diuare);
+////
+//        userDao.criar(diuare);
+//
+//      associarDados(userDao, diuare, 140, 90, 90, "Pressão aferida antes de exercício físico.", "Glicose não medida em jejum.","kennedy.yan8@gmail.com","123");
 
-//       USUARIO INCLUIDONDO LOGIN E SENHA
-        Usuario diuare = new Usuario();
-        diuare.setNome("Lucas Silva");
-        diuare.setPeso(70);
-        diuare.setAltura(1.90);
-        diuare.setEmail("lucas@gmail.com");
-        diuare.setSenha("123");
-        diuare.setSexo("M");
-        diuare.setDataNascimento(LocalDate.of(1992, 3, 19));
-        usuarios.add(diuare);
-//
-        userDao.criar(diuare);
-//
-        associarDados(userDao, diuare, 135, 88, 95.0, "Pressão aferida após exercício físico.", "Glicose medida em jejum.","lucas@gmail.com","123");
 
         //   ========================= FIM  CRIAÇÃO DE USUARIOS ===============================
 //
@@ -165,18 +165,45 @@ public class App {
 //
 
         //GERA UM RELATORIO DE USUARIO  partir do id
-       // facade.enviarRelatorioGemini(3);
+        // facade.enviarRelatorioGemini(3);
 
+
+        // =============================== NOVO TIPO DE CADASTRO ==================================
+//
+//        UsuarioService usuarioService = new UsuarioService();
+//
+//        // Criar um novo usuário
+//        Usuario yan = new Usuario();
+//        yan.setNome("Yanzoka pnc");
+//        yan.setPeso(74);
+//        yan.setAltura(1.75);
+//        yan.setDataNascimento(LocalDate.of(2006, 1, 18));
+//        yan.setSexo("M");
+//
+//        // Salvar usuário
+//        usuarioService.salvarUsuario(yan);
+//
+//        // Associar dados
+//        usuarioService.associarDados(
+//                yan,
+//                120, 80, 95.0,
+//                "Pressão aferida em repouso.",
+//                "Glicose em jejum.",
+//                "kennedy.yan8@gmail.com",
+//                "cuzao123"
+//        );
+
+
+        // =============================== FIM NOVO TIPO DE CADASTRO ==================================
 
 
         //TESTES DE VALIDAÇÃO DE LOGIN
-//        LoginDao loginDao = new LoginDao();
-//        userDao.exibirTodosUsuarios();
-//        loginDao.validarLogin("lukaspersy@yahoo.com","shadal00");
+        LoginDao loginDao = new LoginDao();
+////        userDao.exibirTodosUsuarios();
+        loginDao.validarLogin("kennedy.yan8@gmail.com","cuzao123");
+
     }
-
 }
-
 
 
 

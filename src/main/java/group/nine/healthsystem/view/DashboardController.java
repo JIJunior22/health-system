@@ -6,7 +6,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-
 import java.io.IOException;
 
 public class DashboardController {
@@ -26,7 +25,6 @@ public class DashboardController {
     @FXML
     private HBox perfilButton;
 
-
     @FXML
     public void initialize() {
         // Associa eventos de clique aos botões
@@ -44,7 +42,6 @@ public class DashboardController {
         } catch (IOException e) {
             e.printStackTrace();
             // Opção: Mostrar uma mensagem de erro     }
-
         }
 
     }
