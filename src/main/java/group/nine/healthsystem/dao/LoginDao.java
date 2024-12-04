@@ -6,22 +6,14 @@ import group.nine.healthsystem.domain.Usuario;
 import group.nine.healthsystem.persistence.EntityManagerFactoryConnection;
 
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.NoResultException;
-import jakarta.persistence.Persistence;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 public class LoginDao {
     private EntityManagerFactoryConnection em = new EntityManagerFactoryConnection();
-    private EntityManagerFactory emf;
 
     public EntityManagerFactoryConnection getEmc() {
-        this.emf = Persistence.createEntityManagerFactory("healthSystem");
         return em;
     }
 
@@ -92,7 +84,7 @@ public class LoginDao {
             System.out.println(String.format("""
                             ╔══════════════════════════════════════╗
                             ║          Detalhes do Usuário         ║
-                            ╠══════════════════════════════════════╣
+                            ╠═���════════════════════════════════════╣
                             ║                                      ║ 
                             ║ Nome: %s                             ║
                             ║ Email: %s                            ║
@@ -177,6 +169,31 @@ public class LoginDao {
         return null;
     }
 
+    public Login buscarPorEmail(String email) {
+        EntityManager em = getEmc().getEntityManager();
+        try {
+            return em.createQuery("SELECT l FROM Login l WHERE l.email = :email", Login.class)
+                    .setParameter("email", email)
+                    .getSingleResult();
+        } catch (Exception e) {
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+
+    public Login buscarPorUsuario(Usuario usuario) {
+        EntityManager em = getEmc().getEntityManager();
+        try {
+            return em.createQuery("SELECT l FROM Login l WHERE l.usuario = :usuario", Login.class)
+                    .setParameter("usuario", usuario)
+                    .getSingleResult();
+        } catch (Exception e) {
+            return null;
+        } finally {
+            em.close();
+        }
+    }
 
 }
 
