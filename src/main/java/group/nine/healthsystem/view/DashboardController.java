@@ -4,11 +4,15 @@ import group.nine.healthsystem.domain.SessaoUsuario;
 import group.nine.healthsystem.domain.Usuario;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+
 import java.io.IOException;
 
 public class DashboardController {
@@ -30,6 +34,9 @@ public class DashboardController {
 
     @FXML
     private Label welcomeText;
+
+    @FXML
+    private Button sairButton;
 
     @FXML
     public void initialize() {
@@ -56,5 +63,27 @@ public class DashboardController {
             // Opção: Mostrar uma mensagem de erro     }
         }
 
+    }
+
+    @FXML
+    private void handleLogout() {
+        try {
+            // Limpa a sessão do usuário
+            SessaoUsuario.getInstance().logout();
+
+            // Carrega a tela de login
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/group/nine/healthsystem/login.fxml"));
+            Parent root = loader.load();
+
+            // Obtém a stage atual e atualiza a cena
+            Stage stage = (Stage) sairButton.getScene().getWindow();
+            Pane mainPane = (Pane) stage.getScene().getRoot();
+            mainPane.getChildren().clear();
+            mainPane.getChildren().add(root);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.err.println("Erro aso sair");
+        }
     }
 }
