@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import jakarta.persistence.EntityManager;
+import at.favre.lib.crypto.bcrypt.BCrypt;
 
 public class UsuarioService {
 
@@ -63,7 +64,25 @@ public class UsuarioService {
 
     public boolean verificarSenha(String email, String senha) {
         Login login = loginDao.buscarPorEmail(email);
-        return login != null && login.getSenha().equals(senha);
+        if (login == null) {
+            System.out.println("Login não encontrado para o email: " + email);
+            return false;
+        }
+        String senhaArmazenada = login.getSenha();
+        System.out.println("Hash armazenado: " + senhaArmazenada);
+        System.out.println("Senha fornecida: " + senha);
+
+        // Verifica se o hash começa com $2a$ ou $2b$ (formato BCrypt)
+        if (!senhaArmazenada.startsWith("$2")) {
+            System.out.println("Hash não está no formato BCrypt!");
+            return false;
+        }
+
+        BCrypt.Result result = BCrypt.verifyer().verify(senha.toCharArray(), senhaArmazenada);
+        System.out.println("Resultado da verificação: " + result);
+        boolean verified = result.verified;
+        System.out.println("Verificação: " + verified);
+        return verified;
     }
 
     public void atualizarUsuario(Usuario usuario) {

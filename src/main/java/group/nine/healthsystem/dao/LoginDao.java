@@ -22,7 +22,9 @@ public class LoginDao {
 
         try {
             // Criptografa a senha do usuário
+            System.out.println("Senha original antes de criptografar: " + login.getSenha());
             String senhaCriptografada = BCrypt.withDefaults().hashToString(12, login.getSenha().toCharArray());
+            System.out.println("Hash gerado: " + senhaCriptografada);
             login.setSenha(senhaCriptografada);
 
             // Associa o login ao usuário
@@ -84,7 +86,7 @@ public class LoginDao {
             System.out.println(String.format("""
                             ╔══════════════════════════════════════╗
                             ║          Detalhes do Usuário         ║
-                            ╠═���════════════════════════════════════╣
+                            ╠══════════════════════════════════════╣
                             ║                                      ║ 
                             ║ Nome: %s                             ║
                             ║ Email: %s                            ║
@@ -170,28 +172,76 @@ public class LoginDao {
     }
 
     public Login buscarPorEmail(String email) {
-        EntityManager em = getEmc().getEntityManager();
+        EntityManager em = null;
+        System.out.println("Buscando login para email: " + email);
         try {
-            return em.createQuery("SELECT l FROM Login l WHERE l.email = :email", Login.class)
-                    .setParameter("email", email)
-                    .getSingleResult();
+            em = getEmc().getEntityManager();
+            em.getTransaction().begin();
+            String jpql = "SELECT l FROM Login l LEFT JOIN FETCH l.usuario WHERE l.email = :email";
+            var query = em.createQuery(jpql, Login.class)
+                    .setParameter("email", email);
+            System.out.println("Query JPQL: " + jpql);
+            Login result = query.getSingleResult();
+            em.getTransaction().commit();
+
+            if (result != null) {
+                System.out.println("Login encontrado: " + result.getEmail());
+                // Detach o objeto do contexto de persistência
+                Login detached = new Login();
+                detached.setId(result.getId());
+                detached.setEmail(result.getEmail());
+                detached.setSenha(result.getSenha());
+                detached.setUsuario(result.getUsuario());
+                return detached;
+            }
+            return null;
         } catch (Exception e) {
+            System.out.println("Erro ao buscar login: " + e.getMessage());
+            e.printStackTrace();
+            if (em != null && em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
             return null;
         } finally {
-            em.close();
+            if (em != null && em.isOpen()) {
+                em.close();
+            }
         }
     }
 
     public Login buscarPorUsuario(Usuario usuario) {
-        EntityManager em = getEmc().getEntityManager();
+        EntityManager em = null;
         try {
-            return em.createQuery("SELECT l FROM Login l WHERE l.usuario = :usuario", Login.class)
-                    .setParameter("usuario", usuario)
-                    .getSingleResult();
+            em = getEmc().getEntityManager();
+            em.getTransaction().begin();
+            String jpql = "SELECT l FROM Login l LEFT JOIN FETCH l.usuario WHERE l.usuario = :usuario";
+            jakarta.persistence.TypedQuery<Login> query = em.createQuery(jpql, Login.class)
+                    .setParameter("usuario", usuario);
+            Login result = query.getSingleResult();
+            em.getTransaction().commit();
+
+            if (result != null) {
+                System.out.println("Login encontrado: " + result.getEmail());
+                // Detach o objeto do contexto de persistência
+                Login detached = new Login();
+                detached.setId(result.getId());
+                detached.setEmail(result.getEmail());
+                detached.setSenha(result.getSenha());
+                detached.setUsuario(result.getUsuario());
+                return detached;
+            }
+            return null;
         } catch (Exception e) {
+            System.out.println("Erro ao buscar login: " + e.getMessage());
+            e.printStackTrace();
+            if (em != null && em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
             return null;
         } finally {
-            em.close();
+            if (em != null && em.isOpen()) {
+                em.close();
+            }
         }
     }
 

@@ -5,10 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c5802069-2f27-4778-bbb6-f40a6a85d0ca" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/view/PerfilController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/dao/LoginDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/dao/LoginDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/service/UsuarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/service/UsuarioService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/view/PerfilController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/view/PerfilController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +80,7 @@
       <workItem from="1733274556196" duration="2803000" />
       <workItem from="1733311758381" duration="24000" />
       <workItem from="1733313441852" duration="8961000" />
-      <workItem from="1733344064337" duration="1950000" />
+      <workItem from="1733344064337" duration="5214000" />
     </task>
     <servers />
   </component>

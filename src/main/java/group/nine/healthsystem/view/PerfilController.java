@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import at.favre.lib.crypto.bcrypt.BCrypt;
 
 public class PerfilController {
 
@@ -49,19 +50,25 @@ public class PerfilController {
             return;
         }
 
-        // Verifica se a senha atual está correta
-        if (!usuarioService.verificarSenha(loginAtual.getEmail(), senhaAtualField.getText())) {
-            mostrarAlerta("Erro", "Senha atual incorreta!");
-            return;
+        boolean alteracaoSenha = !novaSenhaField.getText().isEmpty();
+
+        // Verifica a senha atual apenas se estiver alterando a senha
+        if (alteracaoSenha) {
+            if (!usuarioService.verificarSenha(loginAtual.getEmail(), senhaAtualField.getText())) {
+                mostrarAlerta("Erro", "Senha atual incorreta!");
+                return;
+            }
         }
 
         // Atualiza os dados do usuário
         usuarioAtual.setNome(nomeField.getText());
         loginAtual.setEmail(emailField.getText());
 
-        // Se uma nova senha foi fornecida, atualiza a senha
-        if (!novaSenhaField.getText().isEmpty()) {
-            loginAtual.setSenha(novaSenhaField.getText());
+        // Atualiza a senha apenas se uma nova senha foi fornecida
+        if (alteracaoSenha) {
+            // Usa o BCrypt para criptografar a nova senha
+            String senhaCriptografada = BCrypt.withDefaults().hashToString(12, novaSenhaField.getText().toCharArray());
+            loginAtual.setSenha(senhaCriptografada);
         }
 
         try {
@@ -86,13 +93,14 @@ public class PerfilController {
             return false;
         }
 
+        // Validações de senha apenas se estiver tentando alterar a senha
         if (!novaSenhaField.getText().isEmpty()) {
             if (!novaSenhaField.getText().equals(confirmarSenhaField.getText())) {
                 mostrarAlerta("Erro", "As senhas não coincidem!");
                 return false;
             }
             if (senhaAtualField.getText().isEmpty()) {
-                mostrarAlerta("Erro", "Digite a senha atual para confirmar as alterações!");
+                mostrarAlerta("Erro", "Digite a senha atual para alterar a senha!");
                 return false;
             }
         }
