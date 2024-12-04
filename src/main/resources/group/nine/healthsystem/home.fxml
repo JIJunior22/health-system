@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="group.nine.healthsystem.view.HomeController">
    <children>
       <Label text="Resumo da Semana" textAlignment="CENTER" textFill="#28b984">
          <font>
@@ -33,7 +33,7 @@
                         <Font name="Futura Md BT Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Label text="- valor - " textAlignment="CENTER" textFill="#0bdd1d">
+                  <Label fx:id="pressaoMediaLabel" text="- valor - " textAlignment="CENTER" textFill="#0bdd1d">
                      <font>
                         <Font name="Futura Md BT Medium" size="13.0" />
                      </font>
@@ -52,7 +52,7 @@
                         <Font name="Futura Md BT Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Label text="- valor - " textAlignment="CENTER" textFill="#0bdd1d">
+                  <Label fx:id="glicemiaMediaLabel" text="- valor - " textAlignment="CENTER" textFill="#0bdd1d">
                      <font>
                         <Font name="Futura Md BT Medium" size="13.0" />
                      </font>
@@ -71,7 +71,7 @@
                         <Font name="Futura Md BT Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Label text="- valor - " textAlignment="CENTER" textFill="#0bdd1d">
+                  <Label fx:id="freqCardiacaMediaLabel" text="- valor - " textAlignment="CENTER" textFill="#0bdd1d">
                      <font>
                         <Font name="Futura Md BT Medium" size="13.0" />
                      </font>
@@ -90,7 +90,7 @@
                         <Font name="Futura Md BT Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Label text="- valor - " textAlignment="CENTER" textFill="#0bdd1d">
+                  <Label fx:id="imcMediaLabel" text="- valor - " textAlignment="CENTER" textFill="#0bdd1d">
                      <font>
                         <Font name="Futura Md BT Medium" size="13.0" />
                      </font>
@@ -106,7 +106,7 @@
          <children>
             <VBox prefHeight="200.0">
                <children>
-                  <BarChart prefHeight="167.0" prefWidth="163.0">
+                  <BarChart fx:id="pressaoChart" prefHeight="167.0" prefWidth="163.0">
                     <xAxis>
                       <CategoryAxis side="BOTTOM" />
                     </xAxis>
@@ -118,7 +118,7 @@
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <StackedBarChart>
+                  <StackedBarChart fx:id="glicoseChart">
                     <xAxis>
                       <CategoryAxis side="BOTTOM" />
                     </xAxis>
