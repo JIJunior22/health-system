@@ -1,6 +1,8 @@
 package group.nine.healthsystem.view;
 
+import group.nine.healthsystem.dao.LoginDao;
 import group.nine.healthsystem.dao.UsuarioDao;
+import group.nine.healthsystem.domain.Login;
 import group.nine.healthsystem.domain.Usuario;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -87,7 +89,6 @@ public class UsuarioController {
         //        criar usuário
         Usuario usuario = new Usuario();
         usuario.setNome(nome);
-
         usuario.setDataNascimento(dataDeNascimento);
         usuario.setSexo(sexo.toString());
         usuario.setPeso(Double.parseDouble(peso));
@@ -95,6 +96,14 @@ public class UsuarioController {
 
         try {
             usuarioDao.criar(usuario);
+
+            Login login = new Login();
+            LoginDao loginDao = new LoginDao();
+            login.setEmail(email);
+            login.setSenha(senha);
+            login.setUsuario(usuario);
+            loginDao.adicionarLogin(login,usuario);
+
             // Exibir alerta de sucesso
             Alert alerta = new Alert(Alert.AlertType.INFORMATION);
             alerta.setTitle("Sucesso");

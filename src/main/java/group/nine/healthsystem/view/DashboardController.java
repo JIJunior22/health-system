@@ -1,7 +1,10 @@
 package group.nine.healthsystem.view;
 
+import group.nine.healthsystem.domain.SessaoUsuario;
+import group.nine.healthsystem.domain.Usuario;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -26,12 +29,21 @@ public class DashboardController {
     private HBox perfilButton;
 
     @FXML
+    private Label welcomeText;
+
+    @FXML
     public void initialize() {
         // Associa eventos de clique aos botões
         homeButton.setOnMouseClicked(event -> setCenterPane("home.fxml"));
         novoRegistroButton.setOnMouseClicked(event -> setCenterPane("novo-registro.fxml"));
         relatorioButton.setOnMouseClicked(event -> setCenterPane("relatorio.fxml"));
         perfilButton.setOnMouseClicked(event -> setCenterPane("perfil.fxml"));
+
+        Usuario usuarioLogado = SessaoUsuario.getInstance().getUsuarioLogado();
+        if (usuarioLogado != null) {
+            String primeiroNome = usuarioLogado.getNome().split(" ")[0];
+            welcomeText.setText("Olá, " + primeiroNome + "!");
+        }
     }
 
     public void setCenterPane(String fxmlFile) {

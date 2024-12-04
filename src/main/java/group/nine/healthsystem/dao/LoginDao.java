@@ -10,9 +10,11 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.Persistence;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 public class LoginDao {
     private EntityManagerFactoryConnection em = new EntityManagerFactoryConnection();
@@ -153,6 +155,26 @@ public class LoginDao {
 
         System.out.println("Login bem-sucedido.");
         return true;
+    }
+
+    public Usuario validarLoginRetornandoUsuario(String email, String senha) {
+        EntityManager em = getEmc().getEntityManager();
+        try {
+            var query = em.createQuery(
+                    "SELECT u FROM Usuario u JOIN u.login l WHERE l.email = :email",
+                    Usuario.class);
+            query.setParameter("email", email);
+
+            Usuario usuario = query.getSingleResult();
+            if (BCrypt.verifyer().verify(senha.toCharArray(), usuario.getLogin().getSenha()).verified) {
+                return usuario;
+            }
+        } catch (NoResultException e) {
+            System.out.println("Usuário não encontrado");
+        } finally {
+            em.close();
+        }
+        return null;
     }
 
 
