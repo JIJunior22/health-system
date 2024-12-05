@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
 import java.util.List;
+import java.io.IOException;
 
 public class RelatorioService {
     private final ApiClient apiClient;
@@ -26,7 +27,7 @@ public class RelatorioService {
 
     public String gerarPromptResumo(Usuario usuario, Map<String, Double> medias) {
         StringBuilder prompt = new StringBuilder();
-        prompt.append("Faça uma análise breve e direta dos seguintes valores médios:\n\n");
+        prompt.append("Faça uma análise breve e direta dos seguintes valores médios, formatando a resposta em parágrafos curtos e claros:\n\n");
 
         if (medias.get("pressao_sistolica") != null && medias.get("pressao_diastolica") != null) {
             prompt.append("Pressão Arterial: ")
@@ -46,7 +47,11 @@ public class RelatorioService {
                     .append("\n");
         }
 
-        prompt.append("\nIndique apenas se os valores estão normais ou alterados e qual a principal recomendação.");
+        prompt.append("\nPor favor, forneça:\n")
+                .append("1. Uma breve avaliação se os valores estão normais ou alterados\n")
+                .append("2. Uma recomendação principal baseada nos valores\n")
+                .append("\nFormate a resposta de forma clara e concisa, sem usar marcadores especiais.");
+
         return prompt.toString();
     }
 
@@ -113,109 +118,99 @@ public class RelatorioService {
                                     BarChart<String, Number> pressaoChart,
                                     BarChart<String, Number> glicoseChart) throws Exception {
 
-        // Criar diretório para relatórios se não existir
         String diretorio = "relatorios";
         java.io.File dir = new java.io.File(diretorio);
         if (!dir.exists()) {
             dir.mkdirs();
         }
 
-        // Gerar nome do arquivo com timestamp
         String nomeArquivo = String.format("%s/relatorio_%s.pdf",
                 diretorio,
                 LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss")));
 
+        // Obter a análise antes de criar o documento
+        String analiseIA = apiClient.sendRequest(gerarPromptDetalhado(usuario, medias, registrosPressao, registrosGlicose));
+
         PDDocument document = new PDDocument();
         PDPage page = new PDPage();
         document.addPage(page);
-        PDPageContentStream contentStream = new PDPageContentStream(document, page);
 
-        try {
-            float margin = 50;
-            float width = page.getMediaBox().getWidth() - 2 * margin;
-            float startY = page.getMediaBox().getHeight() - margin;
-            float yPosition = startY;
-            float fontSize = 12;
-            float leading = 1.5f * fontSize;
+        StringBuilder conteudo = new StringBuilder();
+        conteudo.append("RELATÓRIO DE SAÚDE\n\n");
+        conteudo.append("Data: ").append(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"))).append("\n");
+        conteudo.append("Paciente: ").append(usuario.getNome()).append("\n\n");
+        conteudo.append(analiseIA);
 
-            // Título
-            contentStream.beginText();
-            contentStream.setFont(new PDType1Font(FontName.HELVETICA_BOLD), 16);
-            contentStream.newLineAtOffset(margin, yPosition);
-            contentStream.showText("Relatório de Saúde");
-            contentStream.endText();
-            yPosition -= leading;
+        PDType1Font font = new PDType1Font(FontName.HELVETICA);
+        float fontSize = 11;
+        float leading = 1.5f * fontSize;
+        float margin = 50;
+        float width = page.getMediaBox().getWidth() - 2 * margin;
+        float yPosition = page.getMediaBox().getHeight() - margin;
 
-            // Data e nome do paciente
-            contentStream.beginText();
-            contentStream.setFont(new PDType1Font(FontName.HELVETICA), fontSize);
-            contentStream.newLineAtOffset(margin, yPosition);
-            contentStream.showText("Data: " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
-            contentStream.endText();
-            yPosition -= leading;
+        String[] paragrafos = conteudo.toString().split("\n");
+        int currentParagraph = 0;
 
-            contentStream.beginText();
-            contentStream.setFont(new PDType1Font(FontName.HELVETICA), fontSize);
-            contentStream.newLineAtOffset(margin, yPosition);
-            contentStream.showText("Paciente: " + usuario.getNome());
-            contentStream.endText();
-            yPosition -= leading * 2; // Espaço extra antes da análise
+        while (currentParagraph < paragrafos.length) {
+            try (PDPageContentStream contentStream = new PDPageContentStream(document, page)) {
+                while (currentParagraph < paragrafos.length && yPosition >= margin) {
+                    String paragrafo = paragrafos[currentParagraph].trim();
 
-            // Análise da IA
-            String analiseIA = apiClient.sendRequest(gerarPromptDetalhado(usuario, medias, registrosPressao, registrosGlicose));
-            String[] linhas = analiseIA.split("\n");
+                    // Quebra o parágrafo em palavras
+                    String[] palavras = paragrafo.split("\\s+");
+                    StringBuilder linha = new StringBuilder();
 
-            PDType1Font font = new PDType1Font(FontName.HELVETICA);
+                    for (String palavra : palavras) {
+                        float larguraAtual = font.getStringWidth(linha + " " + palavra) / 1000 * fontSize;
 
-            for (String linha : linhas) {
-                // Verifica se precisa de uma nova página
-                if (yPosition < margin + leading) {
-                    contentStream.close();
-                    PDPage newPage = new PDPage();
-                    document.addPage(newPage);
-                    contentStream = new PDPageContentStream(document, newPage);
-                    yPosition = startY;
-                }
+                        if (larguraAtual > width) {
+                            // Escreve a linha atual
+                            if (linha.length() > 0) {
+                                contentStream.beginText();
+                                contentStream.setFont(font, fontSize);
+                                contentStream.newLineAtOffset(margin, yPosition);
+                                contentStream.showText(linha.toString().trim());
+                                contentStream.endText();
+                                yPosition -= leading;
 
-                // Quebra linha se for muito longa
-                if (linha.length() > 0) {
-                    // Limita o tamanho da linha baseado na largura da página
-                    int maxCharsPerLine = 90; // Ajuste este valor conforme necessário
-                    for (int i = 0; i < linha.length(); i += maxCharsPerLine) {
-                        int endIndex = Math.min(i + maxCharsPerLine, linha.length());
-                        String subLinha = linha.substring(i, endIndex);
+                                if (yPosition < margin) {
+                                    break;
+                                }
+                            }
+                            linha = new StringBuilder(palavra);
+                        } else {
+                            if (linha.length() > 0) {
+                                linha.append(" ");
+                            }
+                            linha.append(palavra);
+                        }
+                    }
 
+                    // Escreve a última linha do parágrafo
+                    if (linha.length() > 0 && yPosition >= margin) {
                         contentStream.beginText();
                         contentStream.setFont(font, fontSize);
                         contentStream.newLineAtOffset(margin, yPosition);
-                        contentStream.showText(subLinha.trim());
+                        contentStream.showText(linha.toString().trim());
                         contentStream.endText();
-
                         yPosition -= leading;
-
-                        // Verifica novamente se precisa de nova página
-                        if (yPosition < margin + leading) {
-                            contentStream.close();
-                            PDPage newPage = new PDPage();
-                            document.addPage(newPage);
-                            contentStream = new PDPageContentStream(document, newPage);
-                            yPosition = startY;
-                        }
                     }
-                } else {
-                    // Linha vazia - apenas adiciona espaço
-                    yPosition -= leading;
+
+                    currentParagraph++;
+                    yPosition -= leading * 0.5; // Espaço extra entre parágrafos
                 }
             }
-        } finally {
-            contentStream.close();
-            document.save(new FileOutputStream(nomeArquivo));
-            document.close();
+
+            if (currentParagraph < paragrafos.length) {
+                page = new PDPage();
+                document.addPage(page);
+                yPosition = page.getMediaBox().getHeight() - margin;
+            }
         }
+
+        document.save(nomeArquivo);
+        document.close();
 
         return nomeArquivo;
     }
-
-    // Abrir o PDF automaticamente
-    // java.awt.Desktop.getDesktop().open(new java.io.File(nomeArquivo));
 }
