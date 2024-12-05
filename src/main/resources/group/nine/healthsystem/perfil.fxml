@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" spacing="20" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="group.nine.healthsystem.view.PerfilController">
+
+    <padding>
+        <Insets bottom="20" left="20" right="20" top="20" />
+    </padding>
+
+    <GridPane hgap="10" vgap="10">
+        <Label text="Nome:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <TextField fx:id="nomeField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+        <Label text="Email:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+        <Label text="Senha Atual:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <PasswordField fx:id="senhaAtualField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+        <Label text="Nova Senha:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+        <PasswordField fx:id="novaSenhaField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+        <Label text="Confirmar Nova Senha:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+        <PasswordField fx:id="confirmarSenhaField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <columnConstraints>
+         <ColumnConstraints />
+         <ColumnConstraints />
+      </columnConstraints>
+      <rowConstraints>
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+      </rowConstraints>
+    </GridPane>
+
+    <HBox alignment="CENTER" spacing="10">
+        <Button onAction="#handleSalvarAlteracoes" text="Salvar Alterações" />
+        <Button onAction="#handleCancelar" text="Cancelar" />
+    </HBox>
+
+</VBox>

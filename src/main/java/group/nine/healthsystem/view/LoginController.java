@@ -2,6 +2,8 @@ package group.nine.healthsystem.view;
 
 import group.nine.healthsystem.dao.LoginDao;
 import group.nine.healthsystem.domain.Login;
+import group.nine.healthsystem.domain.SessaoUsuario;
+import group.nine.healthsystem.domain.Usuario;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -42,24 +44,20 @@ public class LoginController {
         String senha = senhaEmailField.getText();
 
         try {
-            // Criando a instância do LoginDao
             LoginDao loginDao = new LoginDao();
+            Usuario usuario = loginDao.validarLoginRetornandoUsuario(email, senha);
 
-            // Verificando as credenciais
-            boolean usuarioValido = loginDao.validarLogin(email, senha);
+            if (usuario != null) {
+                SessaoUsuario.getInstance().setUsuarioLogado(usuario);
 
-            if (usuarioValido) {
-                // Se as credenciais forem válidas, redireciona para a dashboard
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/group/nine/healthsystem/dashboard.fxml"));
-                Parent root = loader.load();  // Carrega o FXML da dashboard
+                Parent root = loader.load();
 
-                // Configura a nova cena (dashboard)
                 Stage stage = (Stage) entrarButton.getScene().getWindow();
                 Pane mainPane = (Pane) stage.getScene().getRoot();
                 mainPane.getChildren().clear();
                 mainPane.getChildren().add(root);
             } else {
-                // Se o login falhar, exibe mensagem de erro
                 errorMessage.setText("Email ou senha incorretos!");
                 errorMessage.setVisible(true);
             }
