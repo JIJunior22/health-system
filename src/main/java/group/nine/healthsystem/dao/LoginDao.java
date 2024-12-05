@@ -12,9 +12,13 @@ import jakarta.persistence.Persistence;
 
 import java.util.List;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 public class LoginDao {
     private EntityManagerFactoryConnection em = new EntityManagerFactoryConnection();
     private EntityManagerFactory emf;
+
 
     public EntityManagerFactoryConnection getEmc() {
         this.emf = Persistence.createEntityManagerFactory("healthsystem");
@@ -65,41 +69,10 @@ public class LoginDao {
 
     }
 
-    public void atualizarDadosLogin(Login login) {
-        getEmc().getEntityManager().getTransaction().begin();
-        getEmc().getEntityManager().merge(login);
-        getEmc().getEntityManager().getTransaction().commit();
-        getEmc().getEntityManager().close();
-
-    }
-
 
     public List<Usuario> listar() {
         var query = getEmc().getEntityManager().createNamedQuery("usuarios.listar", Usuario.class);
         return query.getResultList();
-    }
-
-    public Login exibirLoginPorId(int id) {
-        Login login = findById(id);
-
-        if (login == null) {
-            System.out.println("Usuário não encontrado.");
-        } else {
-            System.out.println(String.format("""
-                            ╔══════════════════════════════════════╗
-                            ║          Detalhes do Usuário         ║
-                            ╠══════════════════════════════════════╣
-                            ║                                      ║ 
-                            ║ Nome: %s                             ║
-                            ║ Email: %s                            ║
-                            ║                                      ║
-                            ║                                      ║
-                            ╚══════════════════════════════════════╝
-                            """,
-                    login.getUsuario().getNome(), login.getEmail()
-            ));
-        }
-        return login;
     }
 
 
@@ -112,11 +85,13 @@ public class LoginDao {
         EntityManager em = getEmc().getEntityManager();
 
         try {
+
             var query = em.createQuery("SELECT l FROM Login l WHERE l.email = :email", Login.class);
+
             query.setParameter("email", email);
 
             Login login = query.getSingleResult();
-            // Verifica se a senha fornecida corresponde ao hash armazenado
+
             if (BCrypt.verifyer().verify(senha.toCharArray(), login.getSenha()).verified) {
                 return login;
             } else {
@@ -131,6 +106,7 @@ public class LoginDao {
             return null;
         }
     }
+
 
     public boolean validarLogin(String email, String senha) {
 
@@ -150,9 +126,54 @@ public class LoginDao {
         return true;
     }
 
+    public boolean updatePassword(int id, String novaSenha) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("healthsystem");
+        EntityManager em = emf.createEntityManager();
+
+        try {
+            em.getTransaction().begin();
+            // Busca o usuário pelo ID
+            Login login = em.find(Login.class, id);
+
+            if (login == null) {
+                System.out.println("Usuário não encontrado.");
+                return false;
+            }
+
+            String senhaHash = BCrypt.withDefaults().hashToString(12, novaSenha.toCharArray());
+
+            login.setSenha(senhaHash);
+            em.merge(login);
+            em.getTransaction().commit();
+
+            return true;
+        } catch (Exception e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            e.printStackTrace();
+            return false;
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
+    }
+
+    public void atualizarSenha(int userId, String novaSenha) {
+
+        boolean sucesso = updatePassword(userId, novaSenha);
+        if (sucesso) {
+            System.out.println("Senha alterada com sucesso.");
+        } else {
+            System.out.println("Falha ao alterar a senha.");
+        }
+
+
+    }
+
 
 }
-
 
 
 

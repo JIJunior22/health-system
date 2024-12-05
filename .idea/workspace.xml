@@ -6,11 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="c5802069-2f27-4778-bbb6-f40a6a85d0ca" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/dao/GlicoseDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/dao/GlicoseDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/dao/HipertensaoDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/dao/HipertensaoDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/dao/LoginDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/dao/LoginDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/dao/UsuarioDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/dao/UsuarioDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Glicose.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Glicose.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Grafico.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Hipertensao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Hipertensao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Notificacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Notificacao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/domain/Usuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/view/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/nine/healthsystem/view/UsuarioController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +26,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -43,6 +50,7 @@
     &quot;Application.App.executor&quot;: &quot;Run&quot;,
     &quot;Application.LoginDao.executor&quot;: &quot;Run&quot;,
     &quot;Application.MainApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Teste.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;junior&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
@@ -61,6 +69,26 @@
       <recent name="C:\Users\Lucas\Desktop\heath-system\src\main\java\group\nine\healthsystem\view" />
       <recent name="C:\Users\Junior\Desktop\WorkSpace\health-system\src\main\resources\META-INF" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Teste" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="group.nine.healthsystem.domain.Teste" />
+      <module name="health-system" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="group.nine.healthsystem.domain.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Teste" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -84,7 +112,9 @@
       <workItem from="1733100064216" duration="121000" />
       <workItem from="1733162082810" duration="6068000" />
       <workItem from="1733177760599" duration="12728000" />
-      <workItem from="1733259010264" duration="4286000" />
+      <workItem from="1733259010264" duration="15119000" />
+      <workItem from="1733332004056" duration="5424000" />
+      <workItem from="1733355873344" duration="8392000" />
     </task>
     <servers />
   </component>

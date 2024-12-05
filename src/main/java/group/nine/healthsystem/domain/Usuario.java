@@ -3,7 +3,6 @@ package group.nine.healthsystem.domain;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -73,5 +72,5 @@ public class Usuario {
     public void addHipertensao(Hipertensao hipertensao) {
         this.hipertensao.add(hipertensao);
     }
-}
 
+}
