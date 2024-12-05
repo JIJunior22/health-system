@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" spacing="20" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="group.nine.healthsystem.view.RelatorioController">
+    <TextArea fx:id="resumoTextArea" wrapText="true" prefRowCount="20" prefColumnCount="50" editable="false"/>
+    <Button fx:id="gerarPDFButton" text="Gerar Relatório PDF" onAction="#handleGerarPDF"/>
+</VBox>
