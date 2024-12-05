@@ -203,18 +203,15 @@ public class App {
 //        loginDao.validarLogin("kennedy.yan8@gmail.com","cuzao123");
 
 
-
         //=============== ATUALIZAR SENHA ===============
-
-        LoginDao login = new LoginDao();
-        login.atualizarSenha(1,"yanzoka123");
-
-
-
-
-
-
-
+//
+//        LoginDao login = new LoginDao();
+//        login.atualizarSenha(1,"yanzoka123");
+        Boleto boleto = new Boleto();
+        boleto.setCodigo("4555");
+        boleto.setData_vencimento(LocalDate.of(2024, 12, 30));
+        boleto.setContratoId(1L);
+        System.out.println(boleto.gerarCodigo());
 
 
         //=============== FIM ATUALIZAR SENHA ===============
