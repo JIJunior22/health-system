@@ -38,6 +38,9 @@ public class Usuario {
     @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
     private Login login;
 
+    @Column(name = "imc")
+    private Double imc;
+
     // Métodos relacionados diretamente ao usuário
     public double calcularIMC() {
         if (altura <= 0 || peso <= 0) {
@@ -73,6 +76,14 @@ public class Usuario {
 
     public void addHipertensao(Hipertensao hipertensao) {
         this.hipertensao.add(hipertensao);
+    }
+
+    public Double getImc() {
+        return imc;
+    }
+
+    public void setImc(Double imc) {
+        this.imc = imc;
     }
 
 }

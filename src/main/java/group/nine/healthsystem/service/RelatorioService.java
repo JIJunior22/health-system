@@ -27,24 +27,35 @@ public class RelatorioService {
 
     public String gerarPromptResumo(Usuario usuario, Map<String, Double> medias) {
         StringBuilder prompt = new StringBuilder();
-        prompt.append("Faça uma análise breve e direta dos seguintes valores médios, formatando a resposta em parágrafos curtos e claros:\n\n");
+        prompt.append("Faça uma análise breve e direta dos seguintes valores, formatando a resposta em parágrafos curtos e claros:\n\n");
+
+        // Adiciona IMC
+        try {
+            double imc = usuario.calcularIMC();
+            prompt.append("IMC: ")
+                    .append(String.format("%.1f", imc))
+                    .append(" (").append(classificarIMC(imc)).append(")")
+                    .append(" ");
+        } catch (IllegalStateException e) {
+            System.err.println("Erro ao calcular IMC: " + e.getMessage());
+        }
 
         if (medias.get("pressao_sistolica") != null && medias.get("pressao_diastolica") != null) {
             prompt.append("Pressão Arterial: ")
                     .append(String.format("%.0f/%.0f mmHg",
                             medias.get("pressao_sistolica"),
                             medias.get("pressao_diastolica")))
-                    .append("\n");
+                    .append(" ");
         }
         if (medias.get("glicemia") != null) {
             prompt.append("Glicemia: ")
                     .append(String.format("%.0f mg/dL", medias.get("glicemia")))
-                    .append("\n");
+                    .append(" ");
         }
         if (medias.get("frequencia") != null) {
             prompt.append("Frequência Cardíaca: ")
                     .append(String.format("%.0f bpm", medias.get("frequencia")))
-                    .append("\n");
+                    .append(" ");
         }
 
         prompt.append("\nPor favor, forneça:\n")
@@ -62,8 +73,20 @@ public class RelatorioService {
         StringBuilder prompt = new StringBuilder();
         prompt.append("Atue como um profissional de saúde e faça uma análise detalhada para auxiliar no diagnóstico médico:\n\n");
 
-        // Dados do paciente
-        prompt.append("PACIENTE: ").append(usuario.getNome()).append("\n\n");
+        // Dados do paciente com IMC
+        prompt.append("DADOS DO PACIENTE:\n");
+        prompt.append("Nome: ").append(usuario.getNome()).append("\n");
+        try {
+            double imc = usuario.calcularIMC();
+            prompt.append("IMC: ").append(String.format("%.1f", imc))
+                    .append(" - Classificação: ").append(classificarIMC(imc))
+                    .append("\nPeso: ").append(String.format("%.1f kg", usuario.getPeso()))
+                    .append("\nAltura: ").append(String.format("%.2f m", usuario.getAltura()))
+                    .append("\n");
+        } catch (IllegalStateException e) {
+            System.err.println("Erro ao calcular IMC: " + e.getMessage());
+        }
+        prompt.append("\n");
 
         // Médias
         prompt.append("VALORES MÉDIOS:\n");
@@ -110,6 +133,15 @@ public class RelatorioService {
                 .append("5. Sugestões de exames complementares se necessário\n");
 
         return prompt.toString();
+    }
+
+    private String classificarIMC(Double imc) {
+        if (imc < 18.5) return "Abaixo do peso";
+        if (imc < 25.0) return "Peso normal";
+        if (imc < 30.0) return "Sobrepeso";
+        if (imc < 35.0) return "Obesidade grau 1";
+        if (imc < 40.0) return "Obesidade grau 2";
+        return "Obesidade grau 3";
     }
 
     public String gerarRelatorioPDF(Usuario usuario, Map<String, Double> medias,
