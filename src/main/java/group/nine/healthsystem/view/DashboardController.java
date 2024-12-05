@@ -51,6 +51,8 @@ public class DashboardController {
             String primeiroNome = usuarioLogado.getNome().split(" ")[0];
             welcomeText.setText("Olá, " + primeiroNome + "!");
         }
+
+        setCenterPane("home.fxml");
     }
 
     public void setCenterPane(String fxmlFile) {
@@ -60,7 +62,7 @@ public class DashboardController {
             mainPane.setCenter(newCenterPane); // Define o novo conteúdo no centro
         } catch (IOException e) {
             e.printStackTrace();
-            // Opção: Mostrar uma mensagem de erro     }
+            // Mostrar uma mensagem de erro     }
         }
 
     }

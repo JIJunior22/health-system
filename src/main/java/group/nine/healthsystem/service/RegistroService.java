@@ -29,8 +29,9 @@ public class RegistroService {
             queryPressao.setParameter("usuarioId", usuarioId);
             Object[] resultPressao = queryPressao.getSingleResult();
 
-            if (resultPressao[0] != null) {
-                medias.put("pressao", ((Double) resultPressao[0] + (Double) resultPressao[1]) / 2);
+            if (resultPressao[0] != null && resultPressao[1] != null) {
+                medias.put("pressao_sistolica", (Double) resultPressao[0]);
+                medias.put("pressao_diastolica", (Double) resultPressao[1]);
             }
             if (resultPressao[2] != null) {
                 medias.put("frequencia", (Double) resultPressao[2]);
@@ -67,15 +68,17 @@ public class RegistroService {
                 SELECT h.dataHora, h.pressaoSistolica, h.pressaoDiastolica
                 FROM Hipertensao h
                 WHERE h.usuario.id = :usuarioId
-                AND h.dataHora BETWEEN :dataInicio AND :dataFim
+                AND CAST(h.dataHora AS LocalDate) BETWEEN :dataInicio AND :dataFim
                 ORDER BY h.dataHora
             """;
+
             TypedQuery<Object[]> query = em.createQuery(jpql, Object[].class);
             query.setParameter("usuarioId", usuarioId);
-            query.setParameter("dataInicio", dataInicio.atStartOfDay());
-            query.setParameter("dataFim", dataFim.atTime(23, 59, 59));
+            query.setParameter("dataInicio", dataInicio);
+            query.setParameter("dataFim", dataFim);
 
             List<Object[]> resultados = query.getResultList();
+            System.out.println("Resultados encontrados: " + resultados.size());
 
             for (Object[] resultado : resultados) {
                 Map<String, Object> registro = new HashMap<>();
@@ -85,6 +88,7 @@ public class RegistroService {
                 registros.add(registro);
             }
         } catch (Exception e) {
+            System.err.println("Erro ao buscar registros de pressão: " + e.getMessage());
             e.printStackTrace();
         } finally {
             em.close();
@@ -102,13 +106,14 @@ public class RegistroService {
                 SELECT g.dataHora, g.nivelGlicose
                 FROM Glicose g
                 WHERE g.usuario.id = :usuarioId
-                AND g.dataHora BETWEEN :dataInicio AND :dataFim
+                AND CAST(g.dataHora AS LocalDate) BETWEEN :dataInicio AND :dataFim
                 ORDER BY g.dataHora
             """;
+
             TypedQuery<Object[]> query = em.createQuery(jpql, Object[].class);
             query.setParameter("usuarioId", usuarioId);
-            query.setParameter("dataInicio", dataInicio.atStartOfDay());
-            query.setParameter("dataFim", dataFim.atTime(23, 59, 59));
+            query.setParameter("dataInicio", dataInicio);
+            query.setParameter("dataFim", dataFim);
 
             List<Object[]> resultados = query.getResultList();
 
@@ -119,6 +124,7 @@ public class RegistroService {
                 registros.add(registro);
             }
         } catch (Exception e) {
+            System.err.println("Erro ao buscar registros de glicose: " + e.getMessage());
             e.printStackTrace();
         } finally {
             em.close();
