@@ -57,7 +57,7 @@ public class HomeController {
 
             System.out.println("Médias recebidas: " + medias);
 
-            // Atualiza os labels com as médias formatadas, com tratamento para valores nulos
+            // Atualiza os labels com as médias formatadas
             if (medias.get("pressao_sistolica") != null && medias.get("pressao_diastolica") != null) {
                 String pressaoFormatada = String.format("%.0f/%.0f",
                         medias.get("pressao_sistolica"),
@@ -79,7 +79,16 @@ public class HomeController {
                 freqCardiacaMediaLabel.setText("-");
             }
 
-            imcMediaLabel.setText("-");
+            // Calcula e atualiza o IMC
+            try {
+                double imc = usuarioAtual.calcularIMC();
+                usuarioAtual.setImc(imc);
+                imcMediaLabel.setText(String.format("%.1f", imc));
+            } catch (IllegalStateException e) {
+                System.err.println("Erro ao calcular IMC: " + e.getMessage());
+                imcMediaLabel.setText("-");
+            }
+
         } catch (Exception e) {
             System.err.println("Erro ao atualizar médias: " + e.getMessage());
             e.printStackTrace();
