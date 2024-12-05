@@ -1,6 +1,5 @@
 package group.nine.healthsystem.dao;
 
-import at.favre.lib.crypto.bcrypt.BCrypt;
 import group.nine.healthsystem.domain.Usuario;
 import group.nine.healthsystem.persistence.EntityManagerFactoryConnection;
 import jakarta.persistence.EntityManager;
@@ -18,9 +17,6 @@ public class UsuarioDao {
     }
 
     public void criar(Usuario usuario) {
-        // Criptografa a senha do usuário
-        String senhaCriptografada = BCrypt.withDefaults().hashToString(12, usuario.getSenha().toCharArray());
-        usuario.setSenha(senhaCriptografada);
 
         try {
             getEmc().getEntityManager().getTransaction().begin();
@@ -34,8 +30,9 @@ public class UsuarioDao {
                             ╚══════════════════════════════════════╝
                             Código         : %d
                             Nome           : %s
-                            Email          : %s
-                            Senha          : %s
+                                                        
+                                                        
+                                                        
                             Data Nascimento: %s
                             Sexo           : %s
                             Peso           : %.2f kg
@@ -44,15 +41,14 @@ public class UsuarioDao {
                             """,
                     usuario.getCod(),
                     usuario.getNome(),
-                    usuario.getEmail(),
-                    usuario.getSenha(),
+
                     usuario.getDataNascimento(),
                     usuario.getSexo(),
                     usuario.getPeso(),
                     usuario.getAltura()));
 
         } finally {
-            getEmc().getEntityManager().close();
+
         }
     }
 
@@ -68,7 +64,7 @@ public class UsuarioDao {
 
     public List<Usuario> findAll() {
         //  getEmc().getEntityManager().getTransaction().begin();
-        var query = getEmc().getEntityManager().createNamedQuery("usuarios.listarTodos");
+        var query = getEmc().getEntityManager().createNamedQuery("usuarios.listar");
 
         return query.getResultList();
     }
@@ -87,14 +83,15 @@ public class UsuarioDao {
                                 ╠═══════════════════════════════╣
                                 ║ Código: %-5d                  ║
                                 ║ Nome  : %-50s                 ║
-                                ║ Email : %-50s                 ║
+                                ║                               ║
+                                ║                               ║
                                 ║ Peso  : %-10.2f kg            ║
                                 ║ Altura: %-10.2f m             ║
                                 ╚═══════════════════════════════╝
                                 """,
                         usuario.getCod(),
                         usuario.getNome(),
-                        usuario.getEmail(),
+
                         usuario.getPeso(),
                         usuario.getAltura()));
             }
@@ -113,12 +110,12 @@ public class UsuarioDao {
                             ╠══════════════════════════════════════╣
                             ║ COD          : %d                    ║ 
                             ║ Nome         : %s                    ║
-                            ║ Email        : %s                    ║
+                            ║                                      ║
                             ║ Peso         : %.2f kg               ║
                             ║ Altura       : %.2f m                ║
                             ╚══════════════════════════════════════╝
                             """,
-                    usuario.getCod(), usuario.getNome(), usuario.getEmail(),
+                    usuario.getCod(), usuario.getNome(),
                     usuario.getPeso(), usuario.getAltura()));
         }
         return usuario;
@@ -147,7 +144,6 @@ public class UsuarioDao {
 
         try {
             em.getTransaction().begin();
-
             Usuario usuarioExistente = em.find(Usuario.class, id);
 
             if (usuarioExistente == null) {
@@ -159,12 +155,7 @@ public class UsuarioDao {
             if (usuarioAtualizado.getNome() != null) {
                 usuarioExistente.setNome(usuarioAtualizado.getNome());
             }
-            if (usuarioAtualizado.getEmail() != null) {
-                usuarioExistente.setEmail(usuarioAtualizado.getEmail());
-            }
-            if (usuarioAtualizado.getSenha() != null) {
-                usuarioExistente.setSenha(usuarioAtualizado.getSenha());
-            }
+
             if (usuarioAtualizado.getDataNascimento() != null) {
                 usuarioExistente.setDataNascimento(usuarioAtualizado.getDataNascimento());
             }

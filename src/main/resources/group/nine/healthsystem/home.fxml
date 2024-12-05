@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="group.nine.healthsystem.view.HomeController">
+   <children>
+      <Label text="Resumo" textAlignment="CENTER" textFill="#28b984">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <HBox alignment="CENTER" spacing="5.0">
+         <children>
+            <VBox alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="71.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../img/icons/pressao-arterial.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="Pressão Arterial" textAlignment="CENTER" textFill="#797979">
+                     <font>
+                        <Font name="Futura Md BT Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="pressaoMediaLabel" text="- valor - " textAlignment="CENTER" textFill="#0bdd1d">
+                     <font>
+                        <Font name="Futura Md BT Medium" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <ImageView fitHeight="77.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../img/icons/medidor-de-glicose.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="Glicemia" textAlignment="CENTER" textFill="#797979">
+                     <font>
+                        <Font name="Futura Md BT Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="glicemiaMediaLabel" text="- valor - " textAlignment="CENTER" textFill="#0bdd1d">
+                     <font>
+                        <Font name="Futura Md BT Medium" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <ImageView fitHeight="77.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../img/icons/frequencia-cardiaca.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="Freq.  Cardíaca" textAlignment="CENTER" textFill="#797979">
+                     <font>
+                        <Font name="Futura Md BT Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="freqCardiacaMediaLabel" text="- valor - " textAlignment="CENTER" textFill="#0bdd1d">
+                     <font>
+                        <Font name="Futura Md BT Medium" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <ImageView fitHeight="77.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../img/icons/balancas.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="IMC" textAlignment="CENTER" textFill="#797979">
+                     <font>
+                        <Font name="Futura Md BT Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="imcMediaLabel" text="- valor - " textAlignment="CENTER" textFill="#0bdd1d">
+                     <font>
+                        <Font name="Futura Md BT Medium" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+      </HBox>
+      <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+         <children>
+            <VBox prefHeight="200.0">
+               <children>
+                  <BarChart fx:id="pressaoChart">
+                    <xAxis>
+                      <CategoryAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis side="LEFT" />
+                    </yAxis>
+                  </BarChart>
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" />
+            <BarChart fx:id="glicoseChart">
+               <xAxis>
+                  <CategoryAxis side="BOTTOM" />
+               </xAxis>
+               <yAxis>
+                  <NumberAxis side="LEFT" />
+               </yAxis>
+            </BarChart>
+         </children>
+      </HBox>
+   </children>
+</VBox>

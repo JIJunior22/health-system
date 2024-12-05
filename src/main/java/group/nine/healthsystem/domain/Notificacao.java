@@ -11,6 +11,9 @@ public class Notificacao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @OneToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
     private String titulo; // Título da notificação
     private String mensagem; // Mensagem detalhada
     private String tipo; // Tipo da notificação (ex: "Crítico", "Informativo")

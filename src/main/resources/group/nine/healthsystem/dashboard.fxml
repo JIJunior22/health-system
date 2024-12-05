@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.chart.BarChart?>
-<?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.NumberAxis?>
-<?import javafx.scene.chart.StackedBarChart?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -14,53 +13,97 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="group.nine.healthsystem.view.DashboardController">
    <children>
-      <BorderPane prefHeight="200.0" prefWidth="200.0">
+      <BorderPane fx:id="mainPane" prefHeight="200.0" prefWidth="200.0">
          <left>
-            <VBox prefHeight="333.0" style="-fx-background-color: #46BFB5;" BorderPane.alignment="CENTER">
+            <VBox nodeOrientation="LEFT_TO_RIGHT" spacing="30.0" style="-fx-background-color: #46BFB5;" BorderPane.alignment="CENTER">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                  <HBox fx:id="homeButton" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
                         <ImageView fitHeight="42.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../img/icons/silhueta-de-icone-de-casa.png" />
                            </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </ImageView>
+                        <Label text="Home" textFill="WHITE">
+                           <font>
+                              <Font name="BebasNeueBold" size="23.0" />
+                           </font>
+                        </Label>
                      </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                  <HBox fx:id="novoRegistroButton" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
                         <ImageView fitHeight="51.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../img/icons/registro.png" />
                            </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </ImageView>
+                        <Label text="Novo Registro" textFill="WHITE">
+                           <font>
+                              <Font name="BebasNeueBold" size="23.0" />
+                           </font>
+                        </Label>
                      </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                  <HBox fx:id="relatorioButton" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
                         <ImageView fitHeight="42.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../img/icons/relatorio-de-lucro.png" />
                            </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </ImageView>
+                        <Label text="Relatório" textFill="WHITE">
+                           <font>
+                              <Font name="BebasNeueBold" size="23.0" />
+                           </font>
+                        </Label>
                      </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                  <HBox fx:id="perfilButton" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
                         <ImageView fitHeight="42.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../img/icons/usuario-de-perfil.png" />
                            </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </ImageView>
+                        <Label text="Perfil" textFill="WHITE">
+                           <font>
+                              <Font name="BebasNeueBold" size="23.0" />
+                           </font>
+                        </Label>
                      </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </HBox>
                </children>
             </VBox>
          </left>
          <top>
-            <HBox prefHeight="84.0" prefWidth="600.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+            <HBox prefHeight="108.0" prefWidth="800.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
@@ -76,7 +119,7 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label text="Olá, Fulano!" textFill="#838383">
+                        <Label fx:id="welcomeText" text="Olá, Fulano!" textFill="#838383">
                            <font>
                               <Font name="Garamond Bold" size="27.0" />
                            </font>
@@ -86,13 +129,37 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                  <HBox alignment="CENTER_RIGHT" prefHeight="108.0" prefWidth="399.0">
                      <children>
-                        <ImageView fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../img/icons/notificacao.png" />
-                           </image>
-                        </ImageView>
+                        <Button mnemonicParsing="false" style="-fx-background-color: white;">
+                           <tooltip>
+                              <Tooltip text="Notificações" />
+                           </tooltip>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button fx:id="sairButton" mnemonicParsing="false" onMouseClicked="#handleLogout" style="-fx-background-color: white;">
+                           <tooltip>
+                              <Tooltip text="Sair" />
+                           </tooltip>
+                           <graphic>
+                              <ImageView fx:id="sair" fitHeight="58.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../icons/sair.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </Button>
                      </children>
                      <padding>
                         <Insets right="30.0" />
@@ -101,131 +168,6 @@
                </children>
             </HBox>
          </top>
-         <center>
-            <VBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" BorderPane.alignment="CENTER">
-               <children>
-                  <Label text="Resumo da Semana" textAlignment="CENTER" textFill="#28b984">
-                     <font>
-                        <Font size="21.0" />
-                     </font>
-                  </Label>
-                  <HBox spacing="5.0">
-                     <children>
-                        <VBox alignment="CENTER">
-                           <children>
-                              <ImageView fitHeight="71.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../../img/icons/pressao-arterial.png" />
-                                 </image>
-                              </ImageView>
-                              <Label text="Pressão Arterial" textAlignment="CENTER" textFill="#797979">
-                                 <font>
-                                    <Font name="Futura Md BT Bold" size="12.0" />
-                                 </font>
-                              </Label>
-                              <Label text="- valor - " textAlignment="CENTER" textFill="#0bdd1d">
-                                 <font>
-                                    <Font name="Futura Md BT Medium" size="13.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </VBox>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                           <children>
-                              <ImageView fitHeight="77.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../../img/icons/medidor-de-glicose.png" />
-                                 </image>
-                              </ImageView>
-                              <Label text="Glicemia" textAlignment="CENTER" textFill="#797979">
-                                 <font>
-                                    <Font name="Futura Md BT Bold" size="12.0" />
-                                 </font>
-                              </Label>
-                              <Label text="- valor - " textAlignment="CENTER" textFill="#0bdd1d">
-                                 <font>
-                                    <Font name="Futura Md BT Medium" size="13.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </VBox>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                           <children>
-                              <ImageView fitHeight="77.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../../img/icons/frequencia-cardiaca.png" />
-                                 </image>
-                              </ImageView>
-                              <Label text="Freq.  Cardíaca" textAlignment="CENTER" textFill="#797979">
-                                 <font>
-                                    <Font name="Futura Md BT Bold" size="12.0" />
-                                 </font>
-                              </Label>
-                              <Label text="- valor - " textAlignment="CENTER" textFill="#0bdd1d">
-                                 <font>
-                                    <Font name="Futura Md BT Medium" size="13.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </VBox>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                           <children>
-                              <ImageView fitHeight="77.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../../img/icons/balancas.png" />
-                                 </image>
-                              </ImageView>
-                              <Label text="IMC" textAlignment="CENTER" textFill="#797979">
-                                 <font>
-                                    <Font name="Futura Md BT Bold" size="12.0" />
-                                 </font>
-                              </Label>
-                              <Label text="- valor - " textAlignment="CENTER" textFill="#0bdd1d">
-                                 <font>
-                                    <Font name="Futura Md BT Medium" size="13.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </VBox>
-                     </children>
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </HBox>
-                  <HBox VBox.vgrow="ALWAYS">
-                     <children>
-                        <VBox prefHeight="200.0">
-                           <children>
-                              <BarChart prefHeight="167.0" prefWidth="163.0">
-                                <xAxis>
-                                  <CategoryAxis side="BOTTOM" />
-                                </xAxis>
-                                <yAxis>
-                                  <NumberAxis side="LEFT" />
-                                </yAxis>
-                              </BarChart>
-                           </children>
-                        </VBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0">
-                           <children>
-                              <StackedBarChart>
-                                <xAxis>
-                                  <CategoryAxis side="BOTTOM" />
-                                </xAxis>
-                                <yAxis>
-                                  <NumberAxis side="LEFT" />
-                                </yAxis>
-                              </StackedBarChart>
-                           </children>
-                        </VBox>
-                     </children>
-                  </HBox>
-               </children>
-               <padding>
-                  <Insets top="15.0" />
-               </padding>
-            </VBox>
-         </center>
       </BorderPane>
    </children>
 </StackPane>

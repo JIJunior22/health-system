@@ -1,4 +1,4 @@
-module group.nine.healthsystem {
+open module group.nine.healthsystem {
     requires javafx.controls;
     requires javafx.fxml;
 
@@ -9,27 +9,18 @@ module group.nine.healthsystem {
     requires org.kordamp.bootstrapfx.core;
     requires jakarta.persistence;
     requires static lombok;
-
-    // Abrir pacotes para frameworks que utilizam reflexão
-    opens group.nine.healthsystem to javafx.fxml;
-    opens group.nine.healthsystem.domain to org.hibernate.orm.core, net.bytebuddy;
-
-    // Exportar pacotes necessários
-    exports group.nine.healthsystem;
-    exports group.nine.healthsystem.domain;
-
-
     requires org.hibernate.orm.core;
     requires java.sql;
     requires bcrypt;
+    requires org.apache.httpcomponents.httpclient;
+    requires java.net.http;
+    requires org.apache.httpcomponents.httpcore;
+    requires org.apache.pdfbox;
 
 
-    exports group.nine.healthsystem.dao;
 
-    // Permite que o pacote seja acessado pelo módulo javafx.fxml
-    opens group.nine.healthsystem.view to javafx.fxml;
+
+    exports group.nine.healthsystem.view;
+
+    exports group.nine.healthsystem;  // Exporte o pacote contendo a classe MainApplication
 }
-
-
-
-
