@@ -1,53 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" spacing="20" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="group.nine.healthsystem.view.PerfilController">
+<VBox alignment="CENTER" spacing="20" style="-fx-background-color: white;"
+      xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="group.nine.healthsystem.view.PerfilController">
 
     <padding>
-        <Insets bottom="20" left="20" right="20" top="20" />
+        <Insets top="20" right="30" bottom="20" left="30"/>
     </padding>
 
-    <GridPane hgap="10" vgap="10">
-        <Label text="Nome:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-        <TextField fx:id="nomeField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+    <Label text="Meu Perfil" textAlignment="CENTER" style="-fx-text-fill: #28b984;">
+        <font>
+            <Font size="24.0" />
+        </font>
+    </Label>
 
-        <Label text="Email:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-        <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    <GridPane vgap="10" hgap="10">
+        <Label text="Nome:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+        <TextField fx:id="nomeField" GridPane.columnIndex="1" GridPane.rowIndex="0"
+                   style="-fx-background-radius: 5;"/>
 
-        <Label text="Senha Atual:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-        <PasswordField fx:id="senhaAtualField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Label text="Email:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+        <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="1"
+                   style="-fx-background-radius: 5;"/>
 
-        <Label text="Nova Senha:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-        <PasswordField fx:id="novaSenhaField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        <Label text="Senha:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+        <PasswordField fx:id="senhaField" GridPane.columnIndex="1" GridPane.rowIndex="2"
+                       style="-fx-background-radius: 5;"/>
 
-        <Label text="Confirmar Nova Senha:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-        <PasswordField fx:id="confirmarSenhaField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-      <columnConstraints>
-         <ColumnConstraints />
-         <ColumnConstraints />
-      </columnConstraints>
-      <rowConstraints>
-         <RowConstraints />
-         <RowConstraints />
-         <RowConstraints />
-         <RowConstraints />
-         <RowConstraints />
-      </rowConstraints>
+        <Label text="Data de Nascimento:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+        <DatePicker fx:id="dataNascimentoField" GridPane.columnIndex="1" GridPane.rowIndex="3"
+                    style="-fx-background-radius: 5;"/>
+
+        <Label text="Sexo:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+        <HBox spacing="20" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <RadioButton fx:id="masculinoButton" text="Masculino">
+                <toggleGroup>
+                    <ToggleGroup fx:id="sexoGroup"/>
+                </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="femininoButton" text="Feminino" toggleGroup="$sexoGroup"/>
+        </HBox>
+
+        <Label text="Peso (kg):" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+        <TextField fx:id="pesoField" GridPane.columnIndex="1" GridPane.rowIndex="5"
+                   style="-fx-background-radius: 5;"/>
+
+        <Label text="Altura (m):" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
+        <TextField fx:id="alturaField" GridPane.columnIndex="1" GridPane.rowIndex="6"
+                   style="-fx-background-radius: 5;"/>
     </GridPane>
 
-    <HBox alignment="CENTER" spacing="10">
-        <Button onAction="#handleSalvarAlteracoes" text="Salvar Alterações" />
-        <Button onAction="#handleCancelar" text="Cancelar" />
-    </HBox>
+    <HBox spacing="20" alignment="CENTER">
+        <Button fx:id="editarButton" text="Editar" onAction="#handleEditar"
+                style="-fx-background-color: #28b984; -fx-text-fill: white;
+                       -fx-font-weight: bold; -fx-background-radius: 5;">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Button>
 
+        <Button fx:id="salvarButton" text="Salvar" onAction="#handleSalvar" disable="true"
+                style="-fx-background-color: #28b984; -fx-text-fill: white;
+                       -fx-font-weight: bold; -fx-background-radius: 5;">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Button>
+    </HBox>
 </VBox>
