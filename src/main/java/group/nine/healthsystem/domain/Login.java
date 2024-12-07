@@ -23,5 +23,4 @@ public class Login {
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 }
-  
 

@@ -32,6 +32,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.App.executor": "Run",
+    "Application.LoginDao.executor": "Run",
+    "Application.MainApplication.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "junior",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Junior/Desktop/ARQUIVOS PARA APAGAR/m2/heath-system",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Application.App.executor&quot;: &quot;Run&quot;,
@@ -47,8 +63,9 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Lucas\Desktop\heath-system\src\main\resources\group\nine\healthsystem" />
@@ -57,6 +74,17 @@
       <recent name="C:\Users\Junior\Desktop\WorkSpace\health-system\src\main\resources\META-INF" />
     </key>
   </component>
+
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+      </set>
+    </attachedChunks>
+  </component>
+
+
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -72,11 +100,17 @@
       <workItem from="1733162082810" duration="6068000" />
       <workItem from="1733177760599" duration="12728000" />
       <workItem from="1733259010264" duration="4286000" />
+
+      <workItem from="1733365810135" duration="3234000" />
+      <workItem from="1733391745520" duration="5880000" />
+      <workItem from="1733402698382" duration="5270000" />
+
       <workItem from="1733274556196" duration="2803000" />
       <workItem from="1733311758381" duration="24000" />
       <workItem from="1733313441852" duration="8961000" />
       <workItem from="1733344064337" duration="12244000" />
       <workItem from="1733397170971" duration="8619000" />
+
     </task>
     <servers />
   </component>

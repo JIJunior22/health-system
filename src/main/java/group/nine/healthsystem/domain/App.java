@@ -169,10 +169,10 @@ public class App {
 
 
         // =============================== NOVO TIPO DE CADASTRO ==================================
-//
+////
 //        UsuarioService usuarioService = new UsuarioService();
 //
-//        // Criar um novo usuário
+//        // Cria um novo usuário
 //        Usuario yan = new Usuario();
 //        yan.setNome("Yanzoka pnc");
 //        yan.setPeso(74);
@@ -180,10 +180,10 @@ public class App {
 //        yan.setDataNascimento(LocalDate.of(2006, 1, 18));
 //        yan.setSexo("M");
 //
-//        // Salvar usuário
+//        // Salva usuário
 //        usuarioService.salvarUsuario(yan);
 //
-//        // Associar dados
+//        // Associa dados
 //        usuarioService.associarDados(
 //                yan,
 //                120, 80, 95.0,
@@ -198,9 +198,24 @@ public class App {
 
 
         //TESTES DE VALIDAÇÃO DE LOGIN
-        LoginDao loginDao = new LoginDao();
-////        userDao.exibirTodosUsuarios();
-        loginDao.validarLogin("kennedy.yan8@gmail.com","cuzao123");
+//        LoginDao loginDao = new LoginDao();
+//////        userDao.exibirTodosUsuarios();
+//        loginDao.validarLogin("kennedy.yan8@gmail.com","cuzao123");
+
+
+        //=============== ATUALIZAR SENHA ===============
+//
+//        LoginDao login = new LoginDao();
+//        login.atualizarSenha(1,"yanzoka123");
+        Boleto boleto = new Boleto();
+        boleto.setCodigo("4555");
+        boleto.setData_vencimento(LocalDate.of(2024, 12, 30));
+        boleto.setContratoId(1L);
+        System.out.println(boleto.gerarCodigo());
+
+
+        //=============== FIM ATUALIZAR SENHA ===============
+
 
     }
 }

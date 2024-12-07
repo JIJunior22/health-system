@@ -14,7 +14,7 @@ import lombok.Data;
 @Data
 
 @NamedQueries({@NamedQuery(name = "glicoses.getByName", query = "select  n from Glicose n where n.nivelGlicose = :nivelGlicose"),
-                @NamedQuery(name = "glicoses.listarTodos", query = "SELECT g FROM Glicose g WHERE g.usuario = :usuario")
+        @NamedQuery(name = "glicoses.listarTodos", query = "SELECT g FROM Glicose g WHERE g.usuario = :usuario")
 
 
 })
@@ -80,4 +80,3 @@ public class Glicose {
     }
 
 }
-
