@@ -15,6 +15,8 @@ open module group.nine.healthsystem {
     requires org.apache.httpcomponents.httpclient;
     requires java.net.http;
     requires org.apache.httpcomponents.httpcore;
+    requires org.apache.pdfbox;
+
 
 
 

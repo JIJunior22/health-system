@@ -22,9 +22,6 @@ public class Usuario {
     private int cod;
 
     private String nome;
-
-
-
     private LocalDate dataNascimento;
     private String sexo;
     private double peso;
@@ -35,6 +32,13 @@ public class Usuario {
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private List<Hipertensao> hipertensao = new ArrayList<>();
+
+    @SuppressWarnings("JpaAttributeTypeInspection")
+    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private Login login;
+
+    @Column(name = "imc")
+    private Double imc;
 
     // Métodos relacionados diretamente ao usuário
     public double calcularIMC() {
@@ -71,6 +75,14 @@ public class Usuario {
 
     public void addHipertensao(Hipertensao hipertensao) {
         this.hipertensao.add(hipertensao);
+    }
+
+    public Double getImc() {
+        return imc;
+    }
+
+    public void setImc(Double imc) {
+        this.imc = imc;
     }
 
 }

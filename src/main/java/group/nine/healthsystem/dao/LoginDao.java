@@ -6,22 +6,24 @@ import group.nine.healthsystem.domain.Usuario;
 import group.nine.healthsystem.persistence.EntityManagerFactoryConnection;
 
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.NoResultException;
-import jakarta.persistence.Persistence;
 
 import java.util.List;
+
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
+
 public class LoginDao {
     private EntityManagerFactoryConnection em = new EntityManagerFactoryConnection();
-    private EntityManagerFactory emf;
 
 
     public EntityManagerFactoryConnection getEmc() {
+
         this.emf = Persistence.createEntityManagerFactory("healthsystem");
+
         return em;
     }
 
@@ -30,7 +32,9 @@ public class LoginDao {
 
         try {
             // Criptografa a senha do usuário
+            System.out.println("Senha original antes de criptografar: " + login.getSenha());
             String senhaCriptografada = BCrypt.withDefaults().hashToString(12, login.getSenha().toCharArray());
+            System.out.println("Hash gerado: " + senhaCriptografada);
             login.setSenha(senhaCriptografada);
 
             // Associa o login ao usuário
@@ -126,9 +130,105 @@ public class LoginDao {
         return true;
     }
 
+
     public boolean updatePassword(int id, String novaSenha) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("healthsystem");
         EntityManager em = emf.createEntityManager();
+
+    public Usuario validarLoginRetornandoUsuario(String email, String senha) {
+        EntityManager em = getEmc().getEntityManager();
+        try {
+            var query = em.createQuery(
+                    "SELECT u FROM Usuario u JOIN u.login l WHERE l.email = :email",
+                    Usuario.class);
+            query.setParameter("email", email);
+
+            Usuario usuario = query.getSingleResult();
+            if (BCrypt.verifyer().verify(senha.toCharArray(), usuario.getLogin().getSenha()).verified) {
+                return usuario;
+            }
+        } catch (NoResultException e) {
+            System.out.println("Usuário não encontrado");
+        } finally {
+            em.close();
+        }
+        return null;
+    }
+
+    public Login buscarPorEmail(String email) {
+        EntityManager em = null;
+        System.out.println("Buscando login para email: " + email);
+        try {
+            em = getEmc().getEntityManager();
+            em.getTransaction().begin();
+            String jpql = "SELECT l FROM Login l LEFT JOIN FETCH l.usuario WHERE l.email = :email";
+            var query = em.createQuery(jpql, Login.class)
+                    .setParameter("email", email);
+            System.out.println("Query JPQL: " + jpql);
+            Login result = query.getSingleResult();
+            em.getTransaction().commit();
+
+            if (result != null) {
+                System.out.println("Login encontrado: " + result.getEmail());
+                // Detach o objeto do contexto de persistência
+                Login detached = new Login();
+                detached.setId(result.getId());
+                detached.setEmail(result.getEmail());
+                detached.setSenha(result.getSenha());
+                detached.setUsuario(result.getUsuario());
+                return detached;
+            }
+            return null;
+        } catch (Exception e) {
+            System.out.println("Erro ao buscar login: " + e.getMessage());
+            e.printStackTrace();
+            if (em != null && em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            return null;
+        } finally {
+            if (em != null && em.isOpen()) {
+                em.close();
+            }
+        }
+    }
+
+    public Login buscarPorUsuario(Usuario usuario) {
+        EntityManager em = null;
+        try {
+            em = getEmc().getEntityManager();
+            em.getTransaction().begin();
+            String jpql = "SELECT l FROM Login l LEFT JOIN FETCH l.usuario WHERE l.usuario = :usuario";
+            jakarta.persistence.TypedQuery<Login> query = em.createQuery(jpql, Login.class)
+                    .setParameter("usuario", usuario);
+            Login result = query.getSingleResult();
+            em.getTransaction().commit();
+
+            if (result != null) {
+                System.out.println("Login encontrado: " + result.getEmail());
+                // Detach o objeto do contexto de persistência
+                Login detached = new Login();
+                detached.setId(result.getId());
+                detached.setEmail(result.getEmail());
+                detached.setSenha(result.getSenha());
+                detached.setUsuario(result.getUsuario());
+                return detached;
+            }
+            return null;
+        } catch (Exception e) {
+            System.out.println("Erro ao buscar login: " + e.getMessage());
+            e.printStackTrace();
+            if (em != null && em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            return null;
+        } finally {
+            if (em != null && em.isOpen()) {
+                em.close();
+            }
+        }
+    }
+
 
         try {
             em.getTransaction().begin();

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" spacing="20" style="-fx-background-color: white;"
+      xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="group.nine.healthsystem.view.RelatorioController">
+
+    <padding>
+        <Insets top="20" right="30" bottom="20" left="30"/>
+    </padding>
+
+    <Label text="Resumo da Saúde" textAlignment="CENTER" style="-fx-text-fill: #28b984;">
+        <font>
+            <Font size="24.0" />
+        </font>
+    </Label>
+
+    <TextArea fx:id="resumoTextArea"
+              wrapText="true"
+              prefRowCount="15"
+              prefColumnCount="50"
+              editable="false"
+              style="-fx-font-family: 'Segoe UI';
+                     -fx-font-size: 14px;
+                     -fx-background-color: #f8f9fa;
+                     -fx-border-color: #e9ecef;
+                     -fx-border-radius: 5;
+                     -fx-background-radius: 5;
+                     -fx-padding: 10;">
+    </TextArea>
+
+    <Button fx:id="gerarPDFButton"
+            text="Gerar Relatório PDF Detalhado"
+            onAction="#handleGerarPDF"
+            style="-fx-background-color: #28b984;
+                   -fx-text-fill: white;
+                   -fx-font-weight: bold;
+                   -fx-padding: 10 20;
+                   -fx-background-radius: 5;">
+        <font>
+            <Font size="14.0" />
+        </font>
+    </Button>
+</VBox>
