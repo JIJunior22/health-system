@@ -1,20 +1,35 @@
 package group.nine.healthsystem.domain;
 
+
+import jakarta.persistence.*;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+
 import lombok.Data;
 
 @Entity
 @Data
+
+@NamedQueries({@NamedQuery(name = "glicoses.getByName", query = "select  n from Glicose n where n.nivelGlicose = :nivelGlicose"),
+        @NamedQuery(name = "glicoses.listarTodos", query = "SELECT g FROM Glicose g WHERE g.usuario = :usuario")
+
+
+})
+
 public class Glicose {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private double nivelGlicose;// (Valor em mg/dL ou mmol/L)
-    private String dataHora;// (Data e hora do registro)
-    private boolean emJejum;// (Indica se o registro foi em jejum)
+    private String dataHora;
+    private boolean emJejum;
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
+
     private String observacoes;//
 
 
@@ -65,4 +80,3 @@ public class Glicose {
     }
 
 }
-

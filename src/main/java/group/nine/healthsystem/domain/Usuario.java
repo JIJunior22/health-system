@@ -2,34 +2,50 @@ package group.nine.healthsystem.domain;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
-@NamedQueries({@NamedQuery(name = "usuarios.getByName", query = "select  n from Usuario n where n.nome = :nome")})
+@NoArgsConstructor
+
+@NamedQueries({@NamedQuery(name = "usuarios.getByName", query = "select  n from Usuario n where n.nome = :nome"),
+        @NamedQuery(name = "usuarios.listar", query = "SELECT u FROM Usuario u"),
+
+})
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int cod;
+
     private String nome;
-    @Column(unique = true)
-    private String email;
-    private String senha;
     private LocalDate dataNascimento;
     private String sexo;
     private double peso;
     private double altura;
 
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private List<Glicose> glicose = new ArrayList<>();
 
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private List<Hipertensao> hipertensao = new ArrayList<>();
+
+    @SuppressWarnings("JpaAttributeTypeInspection")
+    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private Login login;
+
+    @Column(name = "imc")
+    private Double imc;
+
+    // Métodos relacionados diretamente ao usuário
     public double calcularIMC() {
+        if (altura <= 0 || peso <= 0) {
+            throw new IllegalStateException("Altura ou peso inválido para cálculo do IMC.");
+        }
         return peso / (altura * altura);
-    }
-
-    public void registrarIMC(double peso, double altura) {
-        this.peso = peso;
-        this.altura = altura;
-
     }
 
     public String gerarRelatorioIMC() {
@@ -46,15 +62,27 @@ public class Usuario {
                 """, nome, peso, altura, imc, classificacao);
     }
 
-    private String classificarIMC(double imc) {
-        if (imc < 18.5) {
-            return "Abaixo do peso";
-        } else if (imc < 24.9) {
-            return "Peso normal";
-        } else if (imc < 29.9) {
-            return "Sobrepeso";
-        } else {
-            return "Obesidade";
-        }
+    public String classificarIMC(double imc) {
+        if (imc < 18.5) return "Abaixo do peso";
+        if (imc < 24.9) return "Peso normal";
+        if (imc < 29.9) return "Sobrepeso";
+        return "Obesidade";
     }
+
+    public void addGlicose(Glicose glicose) {
+        this.glicose.add(glicose);
+    }
+
+    public void addHipertensao(Hipertensao hipertensao) {
+        this.hipertensao.add(hipertensao);
+    }
+
+    public Double getImc() {
+        return imc;
+    }
+
+    public void setImc(Double imc) {
+        this.imc = imc;
+    }
+
 }

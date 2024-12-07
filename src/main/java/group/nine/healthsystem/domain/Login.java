@@ -2,9 +2,11 @@ package group.nine.healthsystem.domain;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@NoArgsConstructor
 @NamedQueries({
         @NamedQuery(name = "getAll", query = "select l from Login l"),
         @NamedQuery(name = "removerLogin", query = "select l from Login l where l =:l")
@@ -12,8 +14,13 @@ import lombok.Data;
 public class Login {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    int id;
     @Column(unique = true)
-    String login;
+    String email;
     String senha;
+
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
 }
+
