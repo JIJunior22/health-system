@@ -14,7 +14,11 @@ import java.util.regex.Pattern;
 public class ApiClient {
 
     private static final String API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:streamGenerateContent";
+
     private static final String API_KEY = "chave da api";
+
+    private static final String API_KEY = "chave da gemini api";
+
 
     public String sendRequest(String prompt) throws IOException, InterruptedException {
         // Cria o corpo da requisição em formato JSON
